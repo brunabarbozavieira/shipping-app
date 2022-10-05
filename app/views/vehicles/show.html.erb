@@ -1,0 +1,12 @@
+<h1> Detalhes do Veículo </h1>
+<h2> <%= @vehicle.model %> </h2>
+  <dl>
+    <dt> <%=Vehicle.human_attribute_name(:license_plate)%>: </dt>
+    <dd> <%= @vehicle.license_plate%> </dd>
+    <dt> <%=Vehicle.human_attribute_name(:brand)%>: </dt>
+    <dd> <%= @vehicle.brand%> </dd>
+    <dt> <%=Vehicle.human_attribute_name(:year_of_manufacture)%>: </dt>
+    <dd> <%= @vehicle.year_of_manufacture %> </dd>
+    <dt> <%=Vehicle.human_attribute_name(:maximum_load_capacity)%>: </dt>
+    <dd> <%= @vehicle.maximum_load_capacity %> kg </dd>
+  </dl>

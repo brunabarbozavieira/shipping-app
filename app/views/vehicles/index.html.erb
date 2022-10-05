@@ -1,0 +1,21 @@
+<h1>Lista de Veículos</h1>
+
+<%= link_to 'Cadastrar Veículo', new_vehicle_url %>
+
+<% if @vehicles.any? %>
+  <% @vehicles.each do |vehicle|%>
+    <table>
+      <tr>
+        <th> <%=Vehicle.human_attribute_name(:model)%> </th>
+        <th> <%=Vehicle.human_attribute_name(:brand)%> </th>
+        <th> Status </th>
+      </tr>
+      <tr>
+        <td><%= link_to vehicle.model, vehicle  %> </td>
+        <td><%= vehicle.brand %></td>
+      </tr>
+    </table>
+  <% end %>
+  <% else %>
+  <p>Não existem veículos cadastrados.</p>
+<% end %>

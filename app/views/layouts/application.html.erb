@@ -10,6 +10,17 @@
   </head>
 
   <body>
+    <header>
+      <h1> Frete Rápido </h1>
+      <nav>
+        <%= link_to 'Página Inicial', root_path %> |
+        <%= link_to 'Veículos', vehicles_url %> |
+      </nav>
+      <%= flash[:notice] %>
+    </header>
+
+  <main>
     <%= yield %>
+  <main>
   </body>
 </html>

@@ -1,0 +1,37 @@
+<h1> Cadastro de Veículo </h1>
+
+<% if @vehicle.errors.any? %>
+  <ul>
+    <p> Verifique os erros abaixo: </p>
+    <% @vehicle.errors.full_messages.each do |msg| %>
+      <li> <%= msg %> </li>
+    <% end %>
+  </ul>
+
+<% end %>
+
+<%=form_with model: @vehicle do |f| %>
+  <div>
+    <%= f.label :license_plate %>
+    <%= f.text_field :license_plate %>
+  </div>
+  <div>
+    <%= f.label :brand %>
+    <%= f.text_field :brand %>
+  </div>
+  <div>
+    <%= f.label :model, 'Modelo' %>
+    <%= f.text_field :model %>
+  </div>
+  <div>
+    <%= f.label :year_of_manufacture %>
+    <%= f.select :year_of_manufacture, (Time.zone.now.year - 10)..(Time.zone.now.year + 1) %>
+  </div>
+  <div>
+    <%= f.label :maximum_load_capacity %>
+    <%= f.number_field :maximum_load_capacity %>
+  </div>
+  <div>
+    <%= f.submit 'Salvar' %>
+  </div>
+  <% end %>
