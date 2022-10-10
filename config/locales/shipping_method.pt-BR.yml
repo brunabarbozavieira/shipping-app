@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    models:
+      shipping_method:
+        one: 'Modalidade de Frete'
+        other: 'Modalidades de Frete'
+    attributes:
+      shipping_method:
+        name: 'Nome'
+        minimum_distance: 'Distância Mínima'
+        maximum_distance: 'Distância Máxima'
+        minimum_weight: 'Peso Mínimo'
+        maximum_weight: 'Peso Máximo'
+        flat_rate: 'Taxa Fixa'

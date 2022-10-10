@@ -1,0 +1,21 @@
+<h1> Lista de Modalidade de frete </h1>
+
+<%= link_to 'Cadastrar Nova Modalidade de Frete', new_shipping_method_url %>
+
+<% if @shipping_methods.any? %>
+  <% @shipping_methods.each do |sm|%>
+    <table>
+      <tr>
+        <th> <%=ShippingMethod.human_attribute_name(:name)%> </th>
+        <th> <%=ShippingMethod.human_attribute_name(:flat_rate)%> </th>
+        <th> Status </th>
+      </tr>
+      <tr>
+        <td><%= link_to sm.name, sm  %> </td>
+        <td> R$ <%= sm.flat_rate %> </td>
+      </tr>
+    </table>
+  <% end %>
+  <% else %>
+  <p>Não existem modalidades de frete cadastradas.</p>
+<% end %>

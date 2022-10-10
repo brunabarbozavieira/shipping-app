@@ -15,8 +15,16 @@
       <nav>
         <%= link_to 'Página Inicial', root_path %> |
         <%= link_to 'Veículos', vehicles_url %> |
+        <%= link_to 'Modalidades de Frete', shipping_methods_url %> |
+        <% if user_signed_in? %>
+        <%= current_user.email%>
+        <%= button_to 'Sair', destroy_user_session_url, method: :delete %> |
+        <% else %>
+        <%= link_to 'Entrar', new_user_session_url %>
+        <% end %>
       </nav>
       <%= flash[:notice] %>
+      <%= flash[:alert] %>
     </header>
 
   <main>

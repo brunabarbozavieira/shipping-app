@@ -1,0 +1,17 @@
+<h1> Detalhes da Modalidade de Frete </h1>
+
+<h2> <%= @shipping_method.name %> </h2>
+  <dl>
+    <dt> <%=ShippingMethod.human_attribute_name(:minimum_distance)%>: </dt>
+    <dd> <%= @shipping_method.minimum_distance %> </dd>
+    <dt> <%=ShippingMethod.human_attribute_name(:maximum_distance)%>: </dt>
+    <dd> <%= @shipping_method.maximum_distance%> </dd>
+    <dt> <%=ShippingMethod.human_attribute_name(:minimum_weight)%>: </dt>
+    <dd> <%= @shipping_method.minimum_weight %> </dd>
+    <dt> <%=ShippingMethod.human_attribute_name(:maximum_weight)%>: </dt>
+    <dd> <%= @shipping_method.maximum_weight %> </dd>
+    <dt> <%=ShippingMethod.human_attribute_name(:flat_rate)%>: </dt>
+    <dd> <%= @shipping_method.flat_rate %> </dd>
+  </dl>
+
+  <%= link_to 'Editar', edit_shipping_method_url %>

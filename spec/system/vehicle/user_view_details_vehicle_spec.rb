@@ -7,7 +7,7 @@ describe 'Usuário vê detalhes do veículo' do
 
     visit root_path
     click_on 'Veículos'
-    click_on 'Fiorino'
+    click_on 'MRO4H51'
 
     expect(page).to have_content 'Placa: MRO4H51'
     expect(page).to have_content 'Marca: Fiat'

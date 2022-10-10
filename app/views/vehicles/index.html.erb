@@ -6,13 +6,14 @@
   <% @vehicles.each do |vehicle|%>
     <table>
       <tr>
+        <th> <%=Vehicle.human_attribute_name(:license_plate)%> </th>
         <th> <%=Vehicle.human_attribute_name(:model)%> </th>
-        <th> <%=Vehicle.human_attribute_name(:brand)%> </th>
         <th> Status </th>
       </tr>
       <tr>
-        <td><%= link_to vehicle.model, vehicle  %> </td>
-        <td><%= vehicle.brand %></td>
+        <td><%= link_to vehicle.license_plate, vehicle %></td>
+        <td><%= vehicle.model  %> </td>
+       
       </tr>
     </table>
   <% end %>
