@@ -1,0 +1,24 @@
+<h1> Tabela de Preço por Peso </h1>
+
+<%= link_to 'Cadastrar novo preço por peso', new_price_by_weight_url %>
+
+<% if @price_by_weights.any? %>
+  <% @price_by_weights.each do |pw|%>
+    <table>
+      <tr>
+        <th> <%=PriceByWeight.human_attribute_name(:minimum_weight)%> </th>
+        <th> <%=PriceByWeight.human_attribute_name(:maximum_weight)%> </th>
+        <th> <%=PriceByWeight.human_attribute_name(:price_per_kilometer)%>  </th>
+        <th> Editar  </th>
+      </tr>
+      <tr>
+        <td><%= pw.minimum_weight %></td>
+        <td><%= pw.maximum_weight  %> </td>
+        <td><%= pw.price_per_kilometer %> </td>
+        <td><%= link_to 'Editar', edit_price_by_weight_url(pw.id) %> </td>
+      </tr>
+    </table>
+  <% end %>
+  <% else %>
+  <p>Não existem cadastros de preço por peso.</p>
+<% end %>

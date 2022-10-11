@@ -1,0 +1,28 @@
+<h1> Cadastrar novo preço por peso </h1>
+
+<% if @price_by_weight.errors.any? %>
+  <ul>
+    <p> Verifique os erros abaixo: </p>
+    <% @price_by_weight.errors.full_messages.each do |msg| %>
+      <li> <%= msg %> </li>
+    <% end %>
+  </ul>
+
+<% end %>
+
+
+<%= form_with model: @price_by_weight do |f| %>
+<div>
+  <%= f.label :minimum_weight %>
+  <%= f.number_field :minimum_weight%>
+</div> 
+<div>
+  <%= f.label :maximum_weight %>
+  <%= f.number_field :maximum_weight%>
+</div> 
+<div>
+  <%= f.label :price_per_kilometer %>
+  <%= f.number_field :price_per_kilometer %>
+</div> 
+  <%= f.submit 'Salvar' %>
+  <% end %>
