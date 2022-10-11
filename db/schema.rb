@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_10_220441) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_11_132613) do
+  create_table "price_by_distances", force: :cascade do |t|
+    t.integer "minimum_distance"
+    t.integer "maximum_distance"
+    t.decimal "rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "price_by_weights", force: :cascade do |t|
     t.integer "minimum_weight"
     t.integer "maximum_weight"

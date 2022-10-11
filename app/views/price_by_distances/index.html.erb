@@ -1,0 +1,24 @@
+<h1> Tabela de Preço por Distância </h1>
+
+<%= link_to 'Cadastrar novo preço por distância', new_price_by_distance_url %>
+
+<% if @price_by_distances.any? %>
+  <% @price_by_distances.each do |pd|%>
+    <table>
+      <tr>
+        <th> <%=PriceByDistance.human_attribute_name(:minimum_distance)%> </th>
+        <th> <%=PriceByDistance.human_attribute_name(:maximum_distance)%> </th>
+        <th> <%=PriceByDistance.human_attribute_name(:rate)%>  </th>
+        <th> Editar  </th>
+      </tr>
+      <tr>
+        <td><%= pd.minimum_distance %></td>
+        <td><%= pd.maximum_distance  %> </td>
+        <td><%= pd.rate %> </td>
+        <td><%= link_to 'Editar', edit_price_by_distance_url(pd.id) %> </td>
+      </tr>
+    </table>
+  <% end %>
+  <% else %>
+  <p>Não existem cadastros de preço por distância.</p>
+<% end %>

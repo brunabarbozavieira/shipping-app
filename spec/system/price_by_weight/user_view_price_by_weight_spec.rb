@@ -16,6 +16,9 @@ describe 'Usuário vê tabela de preço por peso' do
     expect(page).to have_content '30'
     expect(page).to have_content '0.5'
     expect(page).to have_content '0.8'
+    expect(page).to have_content 'Peso Mínimo'
+    expect(page).to have_content 'Peso Máximo'
+    expect(page).to have_content 'Preço por km'
   end
 
   it 'e não existem cadastros de preços por pesos' do 
