@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário cadastra novo preço por distância' do 
   it 'a partir da tela de listagem' do
     visit root_path
-    click_on 'Preço por Distância'
+    click_on 'Preços por Distância'
     click_on 'Cadastrar novo preço por distância'
 
     expect(page).to have_field 'Distância Mínima'
@@ -14,7 +14,7 @@ describe 'Usuário cadastra novo preço por distância' do
 
   it 'com sucesso' do 
     visit root_path
-    click_on 'Preço por Distância'
+    click_on 'Preços por Distância'
     click_on 'Cadastrar novo preço por distância'
     fill_in 'Distância Mínima', with: '0'
     fill_in 'Distância Máxima', with: '50'
@@ -31,7 +31,7 @@ describe 'Usuário cadastra novo preço por distância' do
 
   it 'com informações incompletas' do 
     visit root_path
-    click_on 'Preço por Distância'
+    click_on 'Preços por Distância'
     click_on 'Cadastrar novo preço por distância'
     fill_in 'Distância Mínima', with: ''
     fill_in 'Distância Máxima', with: ''

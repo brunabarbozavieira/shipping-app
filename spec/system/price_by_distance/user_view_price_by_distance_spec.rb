@@ -6,7 +6,7 @@ describe 'Usuário vê tabela de preço por distâcia' do
     PriceByDistance.create!(minimum_distance: 51, maximum_distance: 150, rate: 12)
   
     visit root_path
-    click_on 'Preço por Distância'
+    click_on 'Preços por Distância'
     
     expect(current_url).to eq price_by_distances_url
     expect(page).to have_content 'Tabela de Preço por Distância'
@@ -23,7 +23,7 @@ describe 'Usuário vê tabela de preço por distâcia' do
 
   it 'e não existem cadastros de preços por distância' do 
     visit root_path
-    click_on 'Preço por Distância'
+    click_on 'Preços por Distância'
 
     expect(page).to have_content 'Não existem cadastros de preço por distância.'
   end

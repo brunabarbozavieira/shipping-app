@@ -1,4 +1,6 @@
 class PriceByDistancesController < ApplicationController
+  before_action :set_price_by_distance, only: [:edit, :update]
+
   def index
     @price_by_distances = PriceByDistance.all
   end
@@ -8,7 +10,7 @@ class PriceByDistancesController < ApplicationController
   end
 
   def create
-    @price_by_distance = PriceByDistance.new(params.require(:price_by_distance).permit(:minimum_distance, :maximum_distance, :rate))
+    @price_by_distance = PriceByDistance.new(price_by_distance_params)
     if @price_by_distance.save
       redirect_to price_by_distances_url, notice: 'Preço por distância cadastrado com sucesso.'
     else
@@ -18,16 +20,23 @@ class PriceByDistancesController < ApplicationController
   end
 
   def edit
-    @price_by_distance = PriceByDistance.find(params[:id])
   end
 
   def update
-    @price_by_distance = PriceByDistance.new(params.require(:price_by_distance).permit(:minimum_distance, :maximum_distance, :rate))
-    if @price_by_distance.save
+    if @price_by_distance.update(price_by_distance_params)
       redirect_to price_by_distances_url, notice: 'Preço por distância atualizado com sucesso.'
     else
       flash[:alert] = 'Preço por distância não foi atualizado.'
-      render 'new'
+      render 'edit'
     end
+  end
+
+  private
+  def set_price_by_distance
+    @price_by_distance = PriceByDistance.find(params[:id])
+  end
+
+  def price_by_distance_params
+    params.require(:price_by_distance).permit(:minimum_distance, :maximum_distance, :rate)
   end
 end

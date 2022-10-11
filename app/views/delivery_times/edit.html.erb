@@ -1,0 +1,27 @@
+<h1> Editar Prazo de Entrega </h1>
+
+<% if @delivery_time.errors.any? %>
+  <ul>
+    <p> Verifique os erros abaixo: </p>
+    <% @delivery_time.errors.full_messages.each do |msg| %>
+      <li> <%= msg %> </li>
+    <% end %>
+  </ul>
+
+<% end %>
+
+<%= form_with model: @delivery_time do |f| %>
+  <div>
+    <%= f.label :minimum_distance %>
+    <%= f.number_field :minimum_distance%>
+  </div> 
+  <div>
+    <%= f.label :maximum_distance %>
+    <%= f.number_field :maximum_distance%>
+  </div> 
+  <div>
+    <%= f.label :deadline_in_hours %>
+    <%= f.number_field :deadline_in_hours %>
+  </div> 
+    <%= f.submit 'Salvar' %>
+<% end %>

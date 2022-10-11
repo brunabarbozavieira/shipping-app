@@ -1,10 +1,12 @@
 class VehiclesController < ApplicationController
+  before_action :set_vehicle, only: [:edit, :update, :show]
+
   def index
     @vehicles = Vehicle.all
   end
 
   def show 
-    @vehicle = Vehicle.find(params[:id])
+    
   end
 
   def new
@@ -12,7 +14,7 @@ class VehiclesController < ApplicationController
   end
 
   def create
-    @vehicle = Vehicle.new(params.require(:vehicle).permit(:license_plate, :brand, :model, :year_of_manufacture, :maximum_load_capacity))
+    @vehicle = Vehicle.new(vehicle_params)
     if @vehicle.save
       redirect_to @vehicle, notice: 'Veículo cadastrado com sucesso.'
     else
@@ -22,16 +24,25 @@ class VehiclesController < ApplicationController
   end
 
   def edit
-    @vehicle = Vehicle.find(params[:id])
+    
   end
 
   def update
-    @vehicle = Vehicle.new(params.require(:vehicle).permit(:license_plate, :brand, :model, :year_of_manufacture, :maximum_load_capacity))
-    if @vehicle.save
+    if @vehicle.update(vehicle_params)
       redirect_to @vehicle, notice: 'Veículo atualizado com sucesso.'
     else
       flash[:notice] = 'Veículo não foi atualizado.'
       render 'edit'
     end
+  end
+
+  private
+
+  def set_vehicle
+    @vehicle = Vehicle.find(params[:id])
+  end
+
+  def vehicle_params
+    params.require(:vehicle).permit(:license_plate, :brand, :model, :year_of_manufacture, :maximum_load_capacity)
   end
 end

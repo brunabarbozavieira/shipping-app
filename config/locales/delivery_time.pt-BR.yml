@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      delivery_time: 'Prazo de Entrega'
+    attributes:
+      delivery_time:
+        minimum_distance: 'Distância Mínima'
+        maximum_distance: 'Distância Máxima'
+        deadline_in_hours: 'Prazo em Horas'

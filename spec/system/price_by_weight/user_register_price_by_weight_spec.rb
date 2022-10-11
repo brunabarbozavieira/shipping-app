@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Usuário cadastra novo preço por peso' do 
   it 'a partir da tela de listagem' do
     visit root_path
-    click_on 'Preço por Peso'
+    click_on 'Preços por Peso'
     click_on 'Cadastrar novo preço por peso'
 
     expect(page).to have_field 'Peso Mínimo'
@@ -14,7 +14,7 @@ describe 'Usuário cadastra novo preço por peso' do
 
   it 'com sucesso' do 
     visit root_path
-    click_on 'Preço por Peso'
+    click_on 'Preços por Peso'
     click_on 'Cadastrar novo preço por peso'
     fill_in 'Peso Mínimo', with: '0'
     fill_in 'Peso Máximo', with: '10'
@@ -31,7 +31,7 @@ describe 'Usuário cadastra novo preço por peso' do
 
   it 'com informações incompletas' do 
     visit root_path
-    click_on 'Preço por Peso'
+    click_on 'Preços por Peso'
     click_on 'Cadastrar novo preço por peso'
     fill_in 'Peso Mínimo', with: ''
     fill_in 'Peso Máximo', with: ''

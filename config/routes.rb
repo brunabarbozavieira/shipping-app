@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :shipping_methods, only: [:index, :new, :create, :show, :update, :edit]
   resources :price_by_weights, only: [:index, :new, :create, :update, :edit]
   resources :price_by_distances, only: [:index, :new, :create, :update, :edit]
+  resources :delivery_times, only: [:index, :new, :create, :update, :edit]
 end

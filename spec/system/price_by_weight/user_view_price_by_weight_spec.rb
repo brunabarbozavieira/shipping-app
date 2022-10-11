@@ -6,7 +6,7 @@ describe 'Usuário vê tabela de preço por peso' do
     PriceByWeight.create!(minimum_weight: 11, maximum_weight: 30, price_per_kilometer: 0.8)
   
     visit root_path
-    click_on 'Preço por Peso'
+    click_on 'Preços por Peso'
     
     expect(current_url).to eq price_by_weights_url
     expect(page).to have_content 'Tabela de Preço por Peso'
@@ -23,7 +23,7 @@ describe 'Usuário vê tabela de preço por peso' do
 
   it 'e não existem cadastros de preços por pesos' do 
     visit root_path
-    click_on 'Preço por Peso'
+    click_on 'Preços por Peso'
 
     expect(page).to have_content 'Não existem cadastros de preço por peso.'
   end

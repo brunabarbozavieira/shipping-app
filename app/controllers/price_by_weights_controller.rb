@@ -1,4 +1,6 @@
 class PriceByWeightsController < ApplicationController
+  before_action :set_price_by_weight, only: [:edit, :update]
+
   def index
     @price_by_weights = PriceByWeight.all
   end
@@ -8,7 +10,7 @@ class PriceByWeightsController < ApplicationController
   end
 
   def create 
-    @price_by_weight = PriceByWeight.new(params.require(:price_by_weight).permit(:minimum_weight, :maximum_weight,:price_per_kilometer))
+    @price_by_weight = PriceByWeight.new(price_by_weight_params)
     if @price_by_weight.save
       redirect_to price_by_weights_url, notice: 'Preço por peso cadastrado com sucesso.'
     else
@@ -18,16 +20,23 @@ class PriceByWeightsController < ApplicationController
   end
 
   def edit
-    @price_by_weight = PriceByWeight.find(params[:id])
   end
 
   def update
-    @price_by_weight = PriceByWeight.new(params.require(:price_by_weight).permit(:minimum_weight, :maximum_weight,:price_per_kilometer))
-    if @price_by_weight.save
+    if @price_by_weight.update(price_by_weight_params)
       redirect_to price_by_weights_url, notice: 'Preço por peso atualizado com sucesso.'
     else
       flash[:alert] = 'Preço por peso não foi atualizado.'
-      render 'new'
+      render 'edit'
     end
+  end
+
+  private
+  def set_price_by_weight
+    @price_by_weight = PriceByWeight.find(params[:id])
+  end
+
+  def price_by_weight_params
+    params.require(:price_by_weight).permit(:minimum_weight, :maximum_weight, :price_per_kilometer)
   end
 end

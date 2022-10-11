@@ -5,7 +5,7 @@ describe 'Usuário edita preço por peso' do
     PriceByWeight.create!(minimum_weight: 0, maximum_weight: 10, price_per_kilometer: 0.5)
 
     visit root_path
-    click_on 'Preço por Peso'
+    click_on 'Preços por Peso'
     click_on 'Editar'
 
     expect(page).to have_content 'Editar Preço por Peso'
@@ -18,7 +18,7 @@ describe 'Usuário edita preço por peso' do
     PriceByWeight.create!(minimum_weight: 0, maximum_weight: 10, price_per_kilometer: 0.5)
 
     visit root_path
-    click_on 'Preço por Peso'
+    click_on 'Preços por Peso'
     click_on 'Editar'
     fill_in 'Peso Mínimo', with:'50'
     fill_in 'Peso Máximo', with:'500'
@@ -35,7 +35,7 @@ describe 'Usuário edita preço por peso' do
     PriceByWeight.create!(minimum_weight: 0, maximum_weight: 10, price_per_kilometer: 0.5)
 
     visit root_path
-    click_on 'Preço por Peso'
+    click_on 'Preços por Peso'
     click_on 'Editar'
     fill_in 'Peso Mínimo', with:''
     fill_in 'Peso Máximo', with:''

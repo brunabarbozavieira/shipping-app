@@ -16,8 +16,9 @@
         <%= link_to 'Página Inicial', root_path %> |
         <%= link_to 'Veículos', vehicles_url %> |
         <%= link_to 'Modalidades de Frete', shipping_methods_url %> |
-        <%= link_to 'Preço por Peso', price_by_weights_url %> |
-        <%= link_to 'Preço por Distância', price_by_distances_url %> |
+        <%= link_to 'Preços por Peso', price_by_weights_url %> |
+        <%= link_to 'Preços por Distância', price_by_distances_url %> |
+        <%= link_to 'Prazos de Entrega', delivery_times_url %>
         <% if user_signed_in? %>
         <%= current_user.email%>
         <%= button_to 'Sair', destroy_user_session_url, method: :delete %> |

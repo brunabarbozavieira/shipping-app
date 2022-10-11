@@ -5,7 +5,7 @@ describe 'Usuário edita preço por distância' do
     PriceByDistance.create!(minimum_distance: 0, maximum_distance: 50, rate: 9)
 
     visit root_path
-    click_on 'Preço por Distância'
+    click_on 'Preços por Distância'
     click_on 'Editar'
 
     expect(page).to have_content 'Editar Preço por Distância'
@@ -18,7 +18,7 @@ describe 'Usuário edita preço por distância' do
     PriceByDistance.create!(minimum_distance: 0, maximum_distance: 50, rate: 9)
 
     visit root_path
-    click_on 'Preço por Distância'
+    click_on 'Preços por Distância'
     click_on 'Editar'
     fill_in 'Distância Mínima', with: '0'
     fill_in 'Distância Máxima', with: '50'
@@ -37,7 +37,7 @@ describe 'Usuário edita preço por distância' do
     PriceByDistance.create!(minimum_distance: 0, maximum_distance: 50, rate: 9)
 
     visit root_path
-    click_on 'Preço por Distância'
+    click_on 'Preços por Distância'
     click_on 'Editar'
     fill_in 'Distância Mínima', with: ''
     fill_in 'Distância Máxima', with: ''
