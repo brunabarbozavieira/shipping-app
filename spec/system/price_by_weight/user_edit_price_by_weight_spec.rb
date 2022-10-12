@@ -29,6 +29,8 @@ describe 'Usuário edita preço por peso' do
     expect(page).to have_content '50'
     expect(page).to have_content '500'
     expect(page).to have_content '32'
+    expect(page).not_to have_content '10'
+    expect(page).not_to have_content '0.5'
   end
 
   it 'com informações incompletas' do 

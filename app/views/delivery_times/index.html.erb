@@ -3,22 +3,28 @@
 <%= link_to 'Cadastrar novo prazo de entrega', new_delivery_time_url %>
 
 <% if @delivery_times.any? %>
-  <% @delivery_times.each do |dt|%>
+  
     <table>
-      <tr>
-        <th> <%=DeliveryTime.human_attribute_name(:minimum_distance)%> </th>
-        <th> <%=DeliveryTime.human_attribute_name(:maximum_distance)%> </th>
-        <th> <%=DeliveryTime.human_attribute_name(:deadline_in_hours)%>  </th>
-        <th> Editar  </th>
-      </tr>
-      <tr>
-        <td><%= dt.minimum_distance %></td>
-        <td><%= dt.maximum_distance  %> </td>
-        <td><%= dt.deadline_in_hours %> </td>
-        <td><%= link_to 'Editar', edit_delivery_time_url(dt.id) %> </td>
-      </tr>
+      <thead>
+        <tr>
+          <th> <%=DeliveryTime.human_attribute_name(:minimum_distance)%> </th>
+          <th> <%=DeliveryTime.human_attribute_name(:maximum_distance)%> </th>
+          <th> <%=DeliveryTime.human_attribute_name(:deadline_in_hours)%>  </th>
+          <th> Editar  </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @delivery_times.each do |dt|%>
+        <tr>
+          <td><%= dt.minimum_distance %></td>
+          <td><%= dt.maximum_distance  %> </td>
+          <td><%= dt.deadline_in_hours %> </td>
+          <td><%= link_to 'Editar', edit_delivery_time_url(dt.id) %> </td>
+        </tr>
+        <% end %>
+      </tbody>
     </table>
-  <% end %>
+ 
 <% else %>
 <p> Não existem prazos de entrega cadastrados. </p>
 <% end %>

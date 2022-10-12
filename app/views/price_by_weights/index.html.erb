@@ -21,9 +21,10 @@
           <td><%= pw.price_per_kilometer %> </td>
           <td><%= link_to 'Editar', edit_price_by_weight_url(pw.id) %> </td>
         </tr>
+        <% end %>
         </tbody>
     </table>
-  <% end %>
+  
   <% else %>
   <p>Não existem cadastros de preço por peso.</p>
 <% end %>

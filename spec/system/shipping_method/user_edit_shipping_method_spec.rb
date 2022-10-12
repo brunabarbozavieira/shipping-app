@@ -41,6 +41,7 @@ describe 'Usuário edita uma modalidade de frete' do
     expect(page).to have_content 'Peso Mínimo: 50'
     expect(page).to have_content 'Peso Máximo: 500'
     expect(page).to have_content 'Taxa Fixa: 32'
+    expect(page).not_to have_content 'Super veloz'
   end
 
   it 'com informações incompletas' do 

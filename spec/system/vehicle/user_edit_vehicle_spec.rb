@@ -37,6 +37,7 @@ describe 'Usuário edita um veículo' do
     expect(page).to have_content 'Marca: Renault'
     expect(page).to have_content 'Ano de Fabricação: 2020'
     expect(page).to have_content 'Capacidade Máxima de Carga: 800 kg'
+    expect(page).not_to have_content 'Placa: MRO4H51'
   end
 
   it 'com informações incompletas'  do 

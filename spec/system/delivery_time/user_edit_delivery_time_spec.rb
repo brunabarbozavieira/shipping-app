@@ -31,6 +31,8 @@ describe 'Usuário edita um prazo de entrega' do
     expect(page).to have_content '101'
     expect(page).to have_content '300'
     expect(page).to have_content '96'
+    expect(page).not_to have_content '100'
+    expect(page).not_to have_content '48'
   end
 
   it 'com informações incompletas' do 

@@ -20,17 +20,20 @@ describe 'Usuário edita preço por distância' do
     visit root_path
     click_on 'Preços por Distância'
     click_on 'Editar'
-    fill_in 'Distância Mínima', with: '0'
-    fill_in 'Distância Máxima', with: '50'
-    fill_in 'Taxa', with: '9'
+    fill_in 'Distância Mínima', with: '100'
+    fill_in 'Distância Máxima', with: '300'
+    fill_in 'Taxa', with: '40'
     click_on 'Salvar'
 
     expect(current_url).to eq price_by_distances_url
     expect(page).to have_content 'Preço por distância atualizado com sucesso.'
     expect(page).to have_content 'Tabela de Preço por Distância'
-    expect(page).to have_content '0'
-    expect(page).to have_content '50'
-    expect(page).to have_content '9'
+    expect(page).to have_content '100'
+    expect(page).to have_content '300'
+    expect(page).to have_content '40'
+    expect(page).not_to have_content '50'
+    expect(page).not_to have_content '9'
+
   end
 
   it 'com informações incompletas' do 
