@@ -12,6 +12,7 @@ describe 'Usuário vê lista de modalidades de frete' do
     expect(page).to have_content 'itens Grandes'
     expect(page).to have_content 'R$ 6'
     expect(page).to have_content 'R$ 32'
+    expect(page).to have_content 'Ativa'
   end
 
   it 'e não existem modalidades de frete cadastradas' do

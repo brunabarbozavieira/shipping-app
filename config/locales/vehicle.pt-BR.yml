@@ -1,4 +1,7 @@
 pt-BR:
+  available: 'Disponível'
+  operation: 'Operação'
+  maintenance: 'Manutenção'
   activerecord:
     models:
       vehicle:
@@ -11,4 +14,5 @@ pt-BR:
         model: 'Modelo'
         year_of_manufacture: 'Ano de Fabricação'
         maximum_load_capacity: 'Capacidade Máxima de Carga'
+        status: 'Status'
       # will translate User attribute "login" as "Handle"

@@ -1,0 +1,23 @@
+pt-BR:
+  pending: 'Pendente'
+  started: 'Iniciada'
+  closed: 'Encerrada'
+  activerecord:
+    models:
+      service_order:
+        one: 'Ordem de Serviço'
+        other: 'Ordens de Serviço'
+    attributes:
+      service_order:
+        initial_full_address: 'Endereço para Retirada'
+        product_code: 'Código do Produto'
+        dimensions: 'Dimensões'
+        weight: 'Peso'
+        recipient_name: 'Nome do Destinatário'
+        identification_document: 'CPF'
+        contact_phone: 'Telefone'
+        email: 'E-mail'
+        full_delivery_address: 'Endereço para Entrega'
+        service_order_code: 'Código da Ordem de Serviço'
+        total_distance: 'Distância Total'
+        status: Status

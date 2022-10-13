@@ -1,0 +1,64 @@
+<h1> Cadastro de Ordem de Serviço </h1>
+
+<% if @service_order.errors.any? %>
+  <ul>
+    <p> Verifique os erros a baixo: </p>
+    <% @service_order.errors.full_messages.each do |msg| %>
+      <li> <%= msg %> </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @service_order do |f| %>
+
+  <h3> Informações do Produto </h3>
+
+  <div>
+    <%= f.label :initial_full_address %>
+    <%= f.text_field :initial_full_address %>
+  </div>
+  <div>
+    <%= f.label :product_code %>
+    <%= f.text_field :product_code %>
+  </div>
+  <div>
+    <%= f.label :dimensions %>
+    <%= f.text_field :dimensions %>
+  </div>
+  <div>
+    <%= f.label :weight %>
+    <%= f.number_field :weight %>
+  </div>
+
+  <hr>
+
+  <h3> Informações do Destinatário </h3>
+
+  <div>
+    <%= f.label :recipient_name %>
+    <%= f.text_field :recipient_name %>
+  </div>
+  <div>
+    <%= f.label :identification_document %>
+    <%= f.text_field :identification_document %>
+  </div>
+  <div>
+    <%= f.label :contact_phone %>
+    <%= f.text_field :contact_phone %>
+  </div>
+  <div>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+  <div>
+    <%= f.label :full_delivery_address %>
+    <%= f.text_field :full_delivery_address %>
+  </div>
+  <div>
+    <%= f.label :total_distance %>
+    <%= f.number_field :total_distance %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+  <% end %>

@@ -12,6 +12,8 @@
     <dd> <%= @shipping_method.maximum_weight %> </dd>
     <dt> <%=ShippingMethod.human_attribute_name(:flat_rate)%>: </dt>
     <dd> <%= @shipping_method.flat_rate %> </dd>
+    <dt> <%=ShippingMethod.human_attribute_name(:status)%>: </dt>
+    <dd> <%= I18n.translate(@shipping_method.status) %> </dd>
   </dl>
 
   <%= link_to 'Editar', edit_shipping_method_url %>

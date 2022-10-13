@@ -9,7 +9,7 @@
         <tr>
           <th> <%=Vehicle.human_attribute_name(:license_plate)%> </th>
           <th> <%=Vehicle.human_attribute_name(:model)%> </th>
-          <th> Status </th>
+          <th> <%=Vehicle.human_attribute_name(:status)%> </th>
         </tr>
       </thead>
       <tbody>
@@ -17,7 +17,7 @@
         <tr>
           <td><%= link_to vehicle.license_plate, vehicle %></td>
           <td><%= vehicle.model  %> </td>
-       
+          <td><%= I18n.translate(vehicle.status) %> </td>
         </tr>
         <% end %>
       </tbody>

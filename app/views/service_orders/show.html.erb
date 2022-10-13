@@ -1,0 +1,30 @@
+<h1> Detalhes da Ordem de Serviço </h1>
+
+  <dl>
+    <dt> <%=ServiceOrder.human_attribute_name(:initial_full_address)%>: </dt>
+    <dd> <%= @service_order.initial_full_address %> </dd>
+    <dt> <%=ServiceOrder.human_attribute_name(:product_code)%>: </dt>
+    <dd> <%= @service_order.product_code%> </dd>
+    <dt> <%=ServiceOrder.human_attribute_name(:dimensions)%>: </dt>
+    <dd> <%= @service_order.dimensions %> </dd>
+    <dt> <%=ServiceOrder.human_attribute_name(:weight)%>: </dt>
+    <dd> <%= @service_order.weight %> kg </dd>
+    <dt> <%=ServiceOrder.human_attribute_name(:recipient_name)%>: </dt>
+    <dd> <%= @service_order.recipient_name %> </dd>
+    <dt> <%=ServiceOrder.human_attribute_name(:identification_document)%>: </dt>
+    <dd> <%= @service_order.identification_document[0..2]%>.<%= @service_order.identification_document[3..5] %>.<%= @service_order.identification_document[6..8] %>-<%= @service_order.identification_document[9..10] %> </dd>
+    <dt> <%=ServiceOrder.human_attribute_name(:contact_phone)%>: </dt>
+    <dd> (<%= @service_order.contact_phone[0..1]%>)<%= @service_order.contact_phone[2..6] %>-<%= @service_order.contact_phone[7..10] %> </dd>
+    <dt> <%=ServiceOrder.human_attribute_name(:email)%>: </dt>
+    <dd> <%= @service_order.email %> </dd>
+    <dt> <%=ServiceOrder.human_attribute_name(:service_order_code)%>: </dt>
+    <dd> <%= @service_order.service_order_code %> </dd>
+    <dt> <%=ServiceOrder.human_attribute_name(:total_distance)%>: </dt>
+    <dd> <%= @service_order.total_distance %>km </dd>
+    <dt> <%=ServiceOrder.human_attribute_name(:full_delivery_address)%>: </dt>
+    <dd> <%= @service_order.full_delivery_address %> </dd>
+    <dt> <%=ServiceOrder.human_attribute_name(:service_order_code)%>: </dt>
+    <dd> <%= @service_order.service_order_code %> </dd>
+    <dt> <%=ServiceOrder.human_attribute_name(:status)%>: </dt>
+    <dd> <%= I18n.translate(@service_order.status) %> </dd>
+  </dl>

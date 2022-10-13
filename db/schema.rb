@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_11_171203) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_13_135447) do
   create_table "delivery_times", force: :cascade do |t|
     t.integer "minimum_distance"
     t.integer "maximum_distance"
@@ -35,6 +35,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_171203) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "service_orders", force: :cascade do |t|
+    t.string "initial_full_address"
+    t.string "product_code"
+    t.string "dimensions"
+    t.decimal "weight"
+    t.string "recipient_name"
+    t.string "identification_document"
+    t.string "email"
+    t.string "service_order_code"
+    t.integer "total_distance"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "contact_phone"
+    t.string "full_delivery_address"
+  end
+
   create_table "shipping_methods", force: :cascade do |t|
     t.string "name"
     t.integer "minimum_distance"
@@ -44,6 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_171203) do
     t.decimal "flat_rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
   end
 
   create_table "users", force: :cascade do |t|
@@ -67,6 +85,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_11_171203) do
     t.integer "maximum_load_capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
   end
 
 end

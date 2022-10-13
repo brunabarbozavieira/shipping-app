@@ -8,8 +8,14 @@ describe 'Usuário vê veículos' do
     visit root_path
     click_on 'Veículos'
 
+    expect(page).to have_content 'Modelo'
     expect(page).to have_content 'Fiorino'
     expect(page).to have_content 'Kangoo'
+    expect(page).to have_content 'Placa'
+    expect(page).to have_content 'MRO4H51'
+    expect(page).to have_content 'KQV6B36'
+    expect(page).to have_content 'Status'
+    expect(page).to have_content 'Disponível'
   end
 
   it 'e não existem veículos cadastrados' do 
@@ -19,6 +25,7 @@ describe 'Usuário vê veículos' do
     expect(page).to have_content 'Não existem veículos cadastrados.'
     expect(page).not_to have_content 'Modelo'
     expect(page).not_to have_content 'Marca'
+    expect(page).not_to have_content 'Status'
   end
 
 end

@@ -1,0 +1,25 @@
+<h1> Lista de Ordens de Serviço </h1>
+
+<%= link_to 'Cadastrar Nova Ordem de Serviço', new_service_order_url %>
+
+<% if @service_orders.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th> <%=ServiceOrder.human_attribute_name(:service_order_code)%> </th>
+        <th> <%=ServiceOrder.human_attribute_name(:status)%> </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @service_orders.each do |so|%>
+      <tr>
+        <td><%= so.service_order_code %></td>
+        <td><%= I18n.translate(so.status) %> </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<% else %>
+  <p> Não existem ordens de serviço cadastradas. </p>
+<% end %>

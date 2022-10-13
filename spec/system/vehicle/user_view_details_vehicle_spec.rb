@@ -13,5 +13,6 @@ describe 'Usuário vê detalhes do veículo' do
     expect(page).to have_content 'Marca: Fiat'
     expect(page).to have_content 'Ano de Fabricação: 2019'
     expect(page).to have_content 'Capacidade Máxima de Carga: 650 kg'
+    expect(page).to have_content 'Status: Disponível'
   end
 end

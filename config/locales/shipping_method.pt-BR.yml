@@ -1,4 +1,6 @@
 pt-BR:
+  active: 'Ativa'
+  disabled: 'Desativada'
   activerecord:
     models:
       shipping_method:
