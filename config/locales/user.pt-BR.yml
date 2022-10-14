@@ -1,7 +1,10 @@
 pt-BR:
+  admin: 'Usuário Administrador'
+  regular: 'Usuário Regular'
   activerecord:
     models:
       user: 'Usuário'
     attributes:
       user:
         name: 'Nome'
+        user_type: 'Tipo de Usuário'

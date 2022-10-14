@@ -1,5 +1,7 @@
 class VehiclesController < ApplicationController
   before_action :set_vehicle, only: [:edit, :update, :show]
+  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user_is_admin?, only: [:new, :create]
 
   def index
     @vehicles = Vehicle.all

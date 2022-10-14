@@ -1,7 +1,41 @@
 require 'rails_helper'
 
 describe 'Usuário cadastra modalidade de frete' do 
+  it 'sem estar autenticado' do 
+    visit root_path
+    click_on 'Modalidades de Frete' 
+    click_on 'Cadastrar Nova Modalidade de Frete'
+    
+    expect(current_url).to eq new_user_session_url
+  end
+
+  it 'se estiver autenticado como usuário administrador' do 
+    admin = User.create!(email: 'admin@sistemadefrete.com.br', password: '12345678', name: 'Administrador', user_type: 'admin')
+
+    login_as admin
+    visit root_path
+    click_on 'Modalidades de Frete' 
+    click_on 'Cadastrar Nova Modalidade de Frete'
+    
+    expect(current_url).to eq new_shipping_method_url
+  end
+
+  it 'e não possui permissão' do 
+    regular = User.create!(email: 'regular@sistemadefrete.com.br', password: 'abcdefgh', name: 'Regular', user_type: 'regular')
+
+    login_as regular
+    visit root_path
+    click_on 'Modalidades de Frete' 
+    click_on 'Cadastrar Nova Modalidade de Frete'
+    
+    expect(current_url).to eq root_url
+    expect(page).to have_content 'Usuário não possui autorização.'
+  end
+
   it 'a partir da tela inicial' do
+    admin = User.create!(email: 'admin@sistemadefrete.com.br', password: '12345678', name: 'Administrador', user_type: 'admin')
+
+    login_as admin
     visit root_path
     click_on 'Modalidades de Frete' 
     click_on 'Cadastrar Nova Modalidade de Frete'
@@ -15,6 +49,9 @@ describe 'Usuário cadastra modalidade de frete' do
   end
 
   it 'com sucesso' do 
+    admin = User.create!(email: 'admin@sistemadefrete.com.br', password: '12345678', name: 'Administrador', user_type: 'admin')
+
+    login_as admin
     visit root_path
     click_on 'Modalidades de Frete' 
     click_on 'Cadastrar Nova Modalidade de Frete'
@@ -36,6 +73,9 @@ describe 'Usuário cadastra modalidade de frete' do
   end
 
   it 'com informações incompletas' do 
+    admin = User.create!(email: 'admin@sistemadefrete.com.br', password: '12345678', name: 'Administrador', user_type: 'admin')
+
+    login_as admin
     visit root_path
     click_on 'Modalidades de Frete' 
     click_on 'Cadastrar Nova Modalidade de Frete'

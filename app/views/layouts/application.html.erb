@@ -21,7 +21,7 @@
         <%= link_to 'Prazos de Entrega', delivery_times_url %> |
         <%= link_to 'Ordens de Serviço', service_orders_url %>
         <% if user_signed_in? %>
-        <%= current_user.email%>
+        <%= I18n.translate(current_user.user_type) %> - <%= current_user.email%>
         <%= button_to 'Sair', destroy_user_session_url, method: :delete %> |
         <% else %>
         <%= link_to 'Entrar', new_user_session_url %>

@@ -1,4 +1,6 @@
 class ServiceOrdersController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user_is_admin?, only: [:new, :create]
   def index
     @service_orders = ServiceOrder.all
   end
@@ -20,4 +22,5 @@ class ServiceOrdersController < ApplicationController
   def show
     @service_order = ServiceOrder.find(params[:id])
   end
+  
 end
