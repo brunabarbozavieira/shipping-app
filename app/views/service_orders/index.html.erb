@@ -13,7 +13,7 @@
     <tbody>
       <% @service_orders.each do |so|%>
       <tr>
-        <td><%= so.service_order_code %></td>
+        <td><%= link_to so.service_order_code, service_order_url(so.id) %></td>
         <td><%= I18n.translate(so.status) %> </td>
       </tr>
       <% end %>

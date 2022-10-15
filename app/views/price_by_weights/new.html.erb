@@ -24,5 +24,10 @@
   <%= f.label :price_per_kilometer %>
   <%= f.number_field :price_per_kilometer %>
 </div> 
+<div>
+  <%= f.label :shipping_method_id %>
+  <%= f.collection_select :shipping_method_id, @shipping_methods, :id, :name %>
+</div> 
+
   <%= f.submit 'Salvar' %>
   <% end %>

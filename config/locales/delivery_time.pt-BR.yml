@@ -7,3 +7,4 @@ pt-BR:
         minimum_distance: 'Distância Mínima'
         maximum_distance: 'Distância Máxima'
         deadline_in_hours: 'Prazo em Horas'
+        shipping_method_id: 'Modalidade de Frete'

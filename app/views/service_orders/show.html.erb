@@ -1,5 +1,8 @@
 <h1> Detalhes da Ordem de Serviço </h1>
 
+<h2> <%=ServiceOrder.human_attribute_name(:service_order_code)%>: <%= @service_order.service_order_code %> </h2>
+<h3> <%=ServiceOrder.human_attribute_name(:status)%>: <%= I18n.translate(@service_order.status) %> </h3>
+
   <dl>
     <dt> <%=ServiceOrder.human_attribute_name(:initial_full_address)%>: </dt>
     <dd> <%= @service_order.initial_full_address %> </dd>
@@ -20,11 +23,7 @@
     <dt> <%=ServiceOrder.human_attribute_name(:service_order_code)%>: </dt>
     <dd> <%= @service_order.service_order_code %> </dd>
     <dt> <%=ServiceOrder.human_attribute_name(:total_distance)%>: </dt>
-    <dd> <%= @service_order.total_distance %>km </dd>
+    <dd> <%= @service_order.total_distance %> km </dd>
     <dt> <%=ServiceOrder.human_attribute_name(:full_delivery_address)%>: </dt>
     <dd> <%= @service_order.full_delivery_address %> </dd>
-    <dt> <%=ServiceOrder.human_attribute_name(:service_order_code)%>: </dt>
-    <dd> <%= @service_order.service_order_code %> </dd>
-    <dt> <%=ServiceOrder.human_attribute_name(:status)%>: </dt>
-    <dd> <%= I18n.translate(@service_order.status) %> </dd>
   </dl>

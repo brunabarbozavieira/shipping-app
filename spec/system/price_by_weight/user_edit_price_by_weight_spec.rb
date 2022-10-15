@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe 'Usuário edita preço por peso' do 
   it 'a partir da tela inicial' do
-    PriceByWeight.create!(minimum_weight: 0, maximum_weight: 10, price_per_kilometer: 0.5)
+    shipping_method = ShippingMethod.create!(name: 'Super Veloz', minimum_distance: 0, maximum_distance: 4, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
+    PriceByWeight.create!(minimum_weight: 0, maximum_weight: 10, price_per_kilometer: 0.5, shipping_method: shipping_method)
 
     visit root_path
     click_on 'Preços por Peso'
@@ -12,10 +13,13 @@ describe 'Usuário edita preço por peso' do
     expect(page).to have_field 'Peso Mínimo', with: '0'
     expect(page).to have_field 'Peso Máximo', with:'10'
     expect(page).to have_field 'Preço por km', with:'0.5'
+    expect(page).to have_field 'Modalidade de Frete'
   end
 
   it 'com sucesso' do 
-    PriceByWeight.create!(minimum_weight: 0, maximum_weight: 10, price_per_kilometer: 0.5)
+    shipping_method = ShippingMethod.create!(name: 'Super Veloz', minimum_distance: 0, maximum_distance: 4, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
+    ShippingMethod.create!(name: 'Itens Grandes', minimum_distance: 0, maximum_distance: 2, minimum_weight: 50, maximum_weight: 500, flat_rate: 32)
+    PriceByWeight.create!(minimum_weight: 0, maximum_weight: 10, price_per_kilometer: 0.5, shipping_method: shipping_method)
 
     visit root_path
     click_on 'Preços por Peso'
@@ -23,6 +27,7 @@ describe 'Usuário edita preço por peso' do
     fill_in 'Peso Mínimo', with:'50'
     fill_in 'Peso Máximo', with:'500'
     fill_in 'Preço por km', with:'32'
+    select 'Itens Grandes' ,from: 'Modalidade de Frete'
     click_on 'Salvar'
 
     expect(page).to have_content 'Preço por peso atualizado com sucesso.'
@@ -34,7 +39,8 @@ describe 'Usuário edita preço por peso' do
   end
 
   it 'com informações incompletas' do 
-    PriceByWeight.create!(minimum_weight: 0, maximum_weight: 10, price_per_kilometer: 0.5)
+    shipping_method = ShippingMethod.create!(name: 'Super Veloz', minimum_distance: 0, maximum_distance: 4, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
+    PriceByWeight.create!(minimum_weight: 0, maximum_weight: 10, price_per_kilometer: 0.5, shipping_method: shipping_method)
 
     visit root_path
     click_on 'Preços por Peso'

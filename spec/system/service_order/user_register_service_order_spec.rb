@@ -81,7 +81,7 @@ describe 'Usuário cadastra uma ordem de serviço' do
     expect(page).to have_content 'Telefone: (11)98888-0000'
     expect(page).to have_content 'E-mail: rosasm@email.com.br'
     expect(page).to have_content 'Endereço para Entrega: Rua Frida Kahlo, 257 - Jundiaí - SP'
-    expect(page).to have_content 'Distância Total: 60km'
+    expect(page).to have_content 'Distância Total: 60 km'
     expect(page).to have_content  "#{ServiceOrder.last.service_order_code}"
     expect(page).to have_content 'Status: Pendente'
   end

@@ -20,4 +20,4 @@ pt-BR:
         full_delivery_address: 'Endereço para Entrega'
         service_order_code: 'Código da Ordem de Serviço'
         total_distance: 'Distância Total'
-        status: Status
+        status: 'Status'

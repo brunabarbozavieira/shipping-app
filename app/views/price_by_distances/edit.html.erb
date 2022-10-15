@@ -24,5 +24,9 @@
   <%= f.label :rate %>
   <%= f.number_field :rate %>
 </div> 
+<div>
+  <%= f.label :shipping_method_id %>
+  <%= f.collection_select :shipping_method_id, @shipping_methods, :id, :name %>
+</div> 
   <%= f.submit 'Salvar' %>
   <% end %>

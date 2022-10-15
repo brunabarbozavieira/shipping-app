@@ -9,16 +9,21 @@ describe 'Usuário cadastra novo prazo de entrega' do
     expect(page).to have_field 'Distância Mínima'
     expect(page).to have_field 'Distância Máxima'
     expect(page).to have_field 'Prazo em Horas'
+    expect(page).to have_field 'Modalidade de Frete'
     expect(page).to have_button 'Salvar'
   end
 
   it 'com sucesso' do 
+    ShippingMethod.create!(name: 'Super Veloz', minimum_distance: 0, maximum_distance: 4, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
+    ShippingMethod.create!(name: 'Itens Grandes', minimum_distance: 0, maximum_distance: 2, minimum_weight: 50, maximum_weight: 500, flat_rate: 32)
+
     visit root_path
     click_on 'Prazos de Entrega'
     click_on 'Cadastrar novo prazo de entrega'
     fill_in 'Distância Mínima', with: '0'
     fill_in 'Distância Máxima', with: '100'
     fill_in 'Prazo em Horas', with: '48'
+    select 'Super Veloz', from: 'Modalidade de Frete'
     click_on 'Salvar'
 
     expect(current_url).to eq delivery_times_url
@@ -27,6 +32,7 @@ describe 'Usuário cadastra novo prazo de entrega' do
     expect(page).to have_content '0'
     expect(page).to have_content '100'
     expect(page).to have_content '48'
+    expect(page).to have_content 'Super Veloz'
   end
 
   it 'com informações incompletas' do 

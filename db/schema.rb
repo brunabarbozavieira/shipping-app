@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_13_170934) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_15_185645) do
   create_table "delivery_times", force: :cascade do |t|
     t.integer "minimum_distance"
     t.integer "maximum_distance"
     t.integer "deadline_in_hours"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "shipping_method_id", null: false
+    t.index ["shipping_method_id"], name: "index_delivery_times_on_shipping_method_id"
   end
 
   create_table "price_by_distances", force: :cascade do |t|
@@ -25,6 +27,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_13_170934) do
     t.decimal "rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "shipping_method_id", null: false
+    t.index ["shipping_method_id"], name: "index_price_by_distances_on_shipping_method_id"
   end
 
   create_table "price_by_weights", force: :cascade do |t|
@@ -33,6 +37,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_13_170934) do
     t.decimal "price_per_kilometer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "shipping_method_id", null: false
+    t.index ["shipping_method_id"], name: "index_price_by_weights_on_shipping_method_id"
   end
 
   create_table "service_orders", force: :cascade do |t|
@@ -89,4 +95,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_13_170934) do
     t.integer "status", default: 0
   end
 
+  add_foreign_key "delivery_times", "shipping_methods"
+  add_foreign_key "price_by_distances", "shipping_methods"
+  add_foreign_key "price_by_weights", "shipping_methods"
 end

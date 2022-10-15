@@ -6,6 +6,7 @@ class PriceByDistancesController < ApplicationController
   end
 
   def new
+    @shipping_methods = ShippingMethod.all
     @price_by_distance = PriceByDistance.new
   end
 
@@ -14,18 +15,21 @@ class PriceByDistancesController < ApplicationController
     if @price_by_distance.save
       redirect_to price_by_distances_url, notice: 'Preço por distância cadastrado com sucesso.'
     else
+      @shipping_methods = ShippingMethod.all
       flash[:alert] = 'Preço por distância não cadastrado.'
       render 'new'
     end
   end
 
   def edit
+    @shipping_methods = ShippingMethod.all
   end
 
   def update
     if @price_by_distance.update(price_by_distance_params)
       redirect_to price_by_distances_url, notice: 'Preço por distância atualizado com sucesso.'
     else
+      @shipping_methods = ShippingMethod.all
       flash[:alert] = 'Preço por distância não foi atualizado.'
       render 'edit'
     end
@@ -37,6 +41,6 @@ class PriceByDistancesController < ApplicationController
   end
 
   def price_by_distance_params
-    params.require(:price_by_distance).permit(:minimum_distance, :maximum_distance, :rate)
+    params.require(:price_by_distance).permit(:minimum_distance, :maximum_distance, :rate, :shipping_method_id)
   end
 end

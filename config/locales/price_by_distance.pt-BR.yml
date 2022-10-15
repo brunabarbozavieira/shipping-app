@@ -7,3 +7,4 @@ pt-BR:
         minimum_distance: 'Distância Mínima'
         maximum_distance: 'Distância Máxima'
         rate: 'Taxa'
+        shipping_method_id: 'Modalidade de Frete'

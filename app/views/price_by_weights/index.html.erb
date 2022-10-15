@@ -10,6 +10,7 @@
           <th> <%=PriceByWeight.human_attribute_name(:minimum_weight)%> </th>
           <th> <%=PriceByWeight.human_attribute_name(:maximum_weight)%> </th>
           <th> <%=PriceByWeight.human_attribute_name(:price_per_kilometer)%>  </th>
+          <th> <%=PriceByWeight.human_attribute_name(:shipping_method_id)%>  </th>
           <th> Editar  </th>
         </tr>
         </thead>
@@ -19,6 +20,7 @@
           <td><%= pw.minimum_weight %></td>
           <td><%= pw.maximum_weight  %> </td>
           <td><%= pw.price_per_kilometer %> </td>
+          <td><%= pw.shipping_method.name %> </td>
           <td><%= link_to 'Editar', edit_price_by_weight_url(pw.id) %> </td>
         </tr>
         <% end %>

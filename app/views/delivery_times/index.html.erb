@@ -10,6 +10,7 @@
           <th> <%=DeliveryTime.human_attribute_name(:minimum_distance)%> </th>
           <th> <%=DeliveryTime.human_attribute_name(:maximum_distance)%> </th>
           <th> <%=DeliveryTime.human_attribute_name(:deadline_in_hours)%>  </th>
+          <th> <%=DeliveryTime.human_attribute_name(:shipping_method_id)%>  </th>
           <th> Editar  </th>
         </tr>
       </thead>
@@ -19,6 +20,7 @@
           <td><%= dt.minimum_distance %></td>
           <td><%= dt.maximum_distance  %> </td>
           <td><%= dt.deadline_in_hours %> </td>
+          <td><%= dt.shipping_method.name %> </td>
           <td><%= link_to 'Editar', edit_delivery_time_url(dt.id) %> </td>
         </tr>
         <% end %>

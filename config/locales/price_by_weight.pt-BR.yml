@@ -7,3 +7,4 @@ pt-BR:
         minimum_weight: 'Peso Mínimo'
         maximum_weight: 'Peso Máximo'
         price_per_kilometer: 'Preço por km'
+        shipping_method_id: 'Modalidade de Frete'

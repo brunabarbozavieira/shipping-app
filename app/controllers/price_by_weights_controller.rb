@@ -7,6 +7,7 @@ class PriceByWeightsController < ApplicationController
 
   def new 
     @price_by_weight = PriceByWeight.new
+    @shipping_methods = ShippingMethod.all
   end
 
   def create 
@@ -14,18 +15,21 @@ class PriceByWeightsController < ApplicationController
     if @price_by_weight.save
       redirect_to price_by_weights_url, notice: 'Preço por peso cadastrado com sucesso.'
     else
+      @shipping_methods = ShippingMethod.all
       flash[:alert] = 'Preço por peso não cadastrado.'
       render 'new'
     end
   end
 
   def edit
+    @shipping_methods = ShippingMethod.all
   end
 
   def update
     if @price_by_weight.update(price_by_weight_params)
       redirect_to price_by_weights_url, notice: 'Preço por peso atualizado com sucesso.'
     else
+      @shipping_methods = ShippingMethod.all
       flash[:alert] = 'Preço por peso não foi atualizado.'
       render 'edit'
     end
@@ -37,6 +41,6 @@ class PriceByWeightsController < ApplicationController
   end
 
   def price_by_weight_params
-    params.require(:price_by_weight).permit(:minimum_weight, :maximum_weight, :price_per_kilometer)
+    params.require(:price_by_weight).permit(:minimum_weight, :maximum_weight, :price_per_kilometer, :shipping_method_id)
   end
 end
