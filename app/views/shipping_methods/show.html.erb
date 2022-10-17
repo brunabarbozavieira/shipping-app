@@ -15,5 +15,10 @@
     <dt> <%=ShippingMethod.human_attribute_name(:status)%>: </dt>
     <dd> <%= I18n.translate(@shipping_method.status) %> </dd>
   </dl>
+  <% if @shipping_method.active? %>
+    <%= button_to 'Desativar', disabled_shipping_method_url(@shipping_method.id) %>
+   <% else %>
+    <%= button_to 'Ativar', active_shipping_method_url(@shipping_method.id) %>
+  <% end %>
 
   <%= link_to 'Editar', edit_shipping_method_url %>

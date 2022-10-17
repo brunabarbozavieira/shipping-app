@@ -21,3 +21,5 @@ pt-BR:
         service_order_code: 'Código da Ordem de Serviço'
         total_distance: 'Distância Total'
         status: 'Status'
+        deadline: 'Prazo'
+        total_delivery_value: 'Valor Total da Entrega'

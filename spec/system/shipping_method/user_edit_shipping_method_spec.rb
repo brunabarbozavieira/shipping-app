@@ -1,10 +1,49 @@
 require 'rails_helper'
 
 describe 'Usuário edita uma modalidade de frete' do 
-  it 'a partir da tela inicial' do 
-    ShippingMethod.create!(name: 'Super veloz', minimum_distance: 0, maximum_distance: 4, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
-    ShippingMethod.create!(name: 'itens Grandes', minimum_distance: 0, maximum_distance: 2, minimum_weight: 50, maximum_weight: 500, flat_rate: 32)
+  it 'sem estar autenticado' do 
+    ShippingMethod.create!(name: 'Super Veloz', minimum_distance: 0, maximum_distance: 4, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
 
+    visit root_path
+    click_on 'Modalidades de Frete' 
+    click_on 'Super Veloz'
+    click_on 'Editar'
+    
+    expect(current_url).to eq new_user_session_url
+  end
+
+  it 'se estiver autenticado como usuário administrador' do 
+    admin = User.create!(email: 'admin@sistemadefrete.com.br', password: '12345678', name: 'Administrador', user_type: 'admin')
+    shipping_method = ShippingMethod.create!(name: 'Super Veloz', minimum_distance: 0, maximum_distance: 4, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
+
+    login_as admin
+    visit root_path
+    click_on 'Modalidades de Frete' 
+    click_on 'Super Veloz'
+    click_on 'Editar'
+    
+    expect(current_url).to eq edit_shipping_method_url(shipping_method.id)
+  end
+
+  it 'e não possui permissão' do 
+    regular = User.create!(email: 'regular@sistemadefrete.com.br', password: 'abcdefgh', name: 'Regular', user_type: 'regular')
+    shipping_method = ShippingMethod.create!(name: 'Super Veloz', minimum_distance: 0, maximum_distance: 4, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
+
+    login_as regular
+    visit root_path
+    click_on 'Modalidades de Frete' 
+    click_on 'Super Veloz'
+    click_on 'Editar'
+    
+    expect(current_url).to eq root_url
+    expect(page).to have_content 'Usuário não possui autorização.'
+  end
+  
+  it 'a partir da tela inicial' do 
+    admin = User.create!(email: 'admin@sistemadefrete.com.br', password: '12345678', name: 'Administrador', user_type: 'admin')
+    ShippingMethod.create!(name: 'Super veloz', minimum_distance: 0, maximum_distance: 4, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
+  
+    login_as admin
     visit root_path
     click_on 'Modalidades de Frete'
     click_on 'Super veloz'
@@ -20,8 +59,10 @@ describe 'Usuário edita uma modalidade de frete' do
   end
 
   it 'com sucesso' do 
+    admin = User.create!(email: 'admin@sistemadefrete.com.br', password: '12345678', name: 'Administrador', user_type: 'admin')
     ShippingMethod.create!(name: 'Super veloz', minimum_distance: 0, maximum_distance: 4, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
 
+    login_as admin
     visit root_path
     click_on 'Modalidades de Frete'
     click_on 'Super veloz'
@@ -45,8 +86,10 @@ describe 'Usuário edita uma modalidade de frete' do
   end
 
   it 'com informações incompletas' do 
+    admin = User.create!(email: 'admin@sistemadefrete.com.br', password: '12345678', name: 'Administrador', user_type: 'admin')
     ShippingMethod.create!(name: 'Super veloz', minimum_distance: 0, maximum_distance: 4, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
 
+    login_as admin
     visit root_path
     click_on 'Modalidades de Frete' 
     click_on 'Super veloz'

@@ -1,7 +1,7 @@
 class ShippingMethodsController < ApplicationController
-  before_action :set_shipping_method, only: [:edit, :update, :show]
-  before_action :authenticate_user!, only: [:new, :create]
-  before_action :authenticate_user_is_admin?, only: [:new, :create]
+  before_action :set_shipping_method, only: [:edit, :update, :show, :disabled, :active]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :disabled, :active]
+  before_action :authenticate_user_is_admin?, only: [:new, :create, :edit, :update, :disabled, :active]
   def index
     @shipping_methods = ShippingMethod.all
   end
@@ -33,6 +33,16 @@ class ShippingMethodsController < ApplicationController
       flash[:alert] = 'Modalidade de frete não atualizada.'
       render 'edit'
     end
+  end
+
+  def active
+    @shipping_method.active!
+    redirect_to @shipping_method
+  end
+
+  def disabled
+    @shipping_method.disabled!
+    redirect_to @shipping_method
   end
 
   private

@@ -26,4 +26,30 @@
     <dd> <%= @service_order.total_distance %> km </dd>
     <dt> <%=ServiceOrder.human_attribute_name(:full_delivery_address)%>: </dt>
     <dd> <%= @service_order.full_delivery_address %> </dd>
+    <dt> <%=ServiceOrder.human_attribute_name(:total_delivery_value)%>: </dt>
+    <dd> R$ <%= @service_order.total_delivery_value %> </dd>
+    <dt> <%=ServiceOrder.human_attribute_name(:deadline)%>: </dt>
+    <dd> <%= @service_order.deadline %> horas </dd>
+    <dt> Data de Entrega: </dt>
+    <dd>  </dd>
   </dl>
+
+  <hr>
+
+  <% if @service_order.shipping_method_id.nil? %>
+  <%= form_with model: @service_order, url: service_order_start_service_order_url(@service_order.id) do |f| %>
+    <label for="shipping_method_id"> <strong> Escolha a Modalidade de Frete: </strong>
+    <select id="shipping_method_id" name="shipping_method_id"> 
+    <% @service_order.options_shipping_method.each do |shipping_method|%>
+      <option value="<%= shipping_method.id %>"> <%= "Modalidade de Frete: #{shipping_method.name} - Valor Total da Entrega: #{@service_order.total_price_service_order(shipping_method)} - Prazo: #{@service_order.due_date(shipping_method)} horas" %> </option>
+        <td> <%= shipping_method.name %> </td>
+        <td> <%= @service_order.total_price_service_order(shipping_method)%> </td>
+        <td> <%= @service_order.due_date(shipping_method) %> </td>
+     <% end %>
+    </select>
+    </label>
+      <%= f.submit 'Iniciar Ordem de Serviço' %>
+    <% end %>
+  <% end %>
+
+  
