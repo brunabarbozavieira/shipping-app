@@ -1,9 +1,34 @@
 require 'rails_helper'
 
 describe 'Usuário cadastra novo preço por peso' do 
-  it 'a partir da tela de listagem' do
-    
+  it 'se estiver autenticado como usuário administrador' do 
+    admin = User.create!(email: 'admin@sistemadefrete.com.br', password: '12345678', name: 'Administrador', user_type: 'admin')
 
+    login_as admin
+    visit root_path
+    click_on 'Preços por Peso'
+    click_on 'Cadastrar novo preço por peso'
+    
+    expect(current_url).to eq new_price_by_weight_url
+  end
+
+  it 'e não possui permissão' do 
+    regular = User.create!(email: 'regular@sistemadefrete.com.br', password: 'abcdefgh', name: 'Regular', user_type: 'regular')
+
+    login_as regular
+    visit root_path
+    click_on 'Preços por Peso'
+    click_on 'Cadastrar novo preço por peso'
+    
+    expect(current_url).to eq root_url
+    expect(page).to have_content 'Usuário não possui autorização.'
+  end
+
+  it 'a partir da tela de listagem' do
+    admin = User.create!(email: 'admin@sistemadefrete.com.br', password: '12345678', name: 'Administrador', user_type: 'admin')
+
+    login_as admin
+  
     visit root_path
     click_on 'Preços por Peso'
     click_on 'Cadastrar novo preço por peso'
@@ -18,6 +43,9 @@ describe 'Usuário cadastra novo preço por peso' do
   it 'com sucesso' do 
     ShippingMethod.create!(name: 'Super Veloz', minimum_distance: 0, maximum_distance: 4, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
     ShippingMethod.create!(name: 'Itens Grandes', minimum_distance: 0, maximum_distance: 2, minimum_weight: 50, maximum_weight: 500, flat_rate: 32)
+    admin = User.create!(email: 'admin@sistemadefrete.com.br', password: '12345678', name: 'Administrador', user_type: 'admin')
+
+    login_as admin
 
     visit root_path
     click_on 'Preços por Peso'
@@ -38,6 +66,9 @@ describe 'Usuário cadastra novo preço por peso' do
 
   it 'com informações incompletas' do 
     ShippingMethod.create!(name: 'Super Veloz', minimum_distance: 0, maximum_distance: 4, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
+    admin = User.create!(email: 'admin@sistemadefrete.com.br', password: '12345678', name: 'Administrador', user_type: 'admin')
+
+    login_as admin
   
     visit root_path
     click_on 'Preços por Peso'

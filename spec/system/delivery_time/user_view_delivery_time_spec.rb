@@ -1,11 +1,20 @@
 require 'rails_helper'
 
 describe 'Usuário vê prazos de entrega' do 
+  it 'sem estar autenticado' do 
+    visit root_path
+    click_on 'Prazos de Entrega'
+
+    expect(current_url).to eq new_user_session_url
+  end
+
   it 'a partir da tela inicial' do 
     shipping_method = ShippingMethod.create!(name: 'Super Veloz', minimum_distance: 0, maximum_distance: 4, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
     DeliveryTime.create!(minimum_distance:0, maximum_distance:100, deadline_in_hours: 48, shipping_method: shipping_method)
     DeliveryTime.create!(minimum_distance:101, maximum_distance:300, deadline_in_hours: 96, shipping_method: shipping_method)
-
+    regular = User.create!(email: 'regular@sistemadefrete.com.br', password: 'abcdefgh', name: 'Regular', user_type: 'regular')
+  
+    login_as regular
     visit root_path
     click_on 'Prazos de Entrega'
 
@@ -17,6 +26,9 @@ describe 'Usuário vê prazos de entrega' do
   end
 
   it 'e não existem prazos de entrega cadastrados' do 
+    regular = User.create!(email: 'regular@sistemadefrete.com.br', password: 'abcdefgh', name: 'Regular', user_type: 'regular')
+  
+    login_as regular
     visit root_path
     click_on 'Prazos de Entrega'
 

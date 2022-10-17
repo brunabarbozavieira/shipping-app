@@ -1,14 +1,13 @@
 class VehiclesController < ApplicationController
-  before_action :set_vehicle, only: [:edit, :update, :show]
-  before_action :authenticate_user!, only: [:new, :create]
-  before_action :authenticate_user_is_admin?, only: [:new, :create]
+  before_action :set_vehicle, only: [:edit, :update, :show, :maintenance, :available]
+  before_action :authenticate_user!, only: [:new, :create, :maintenance, :available, :edit, :update, :index, :show]
+  before_action :authenticate_user_is_admin?, only: [:new, :create, :maintenance, :available, :edit, :update]
 
   def index
     @vehicles = Vehicle.all
   end
 
   def show 
-    
   end
 
   def new
@@ -36,6 +35,16 @@ class VehiclesController < ApplicationController
       flash[:notice] = 'Veículo não foi atualizado.'
       render 'edit'
     end
+  end
+
+  def maintenance
+    @vehicle.maintenance!
+    redirect_to @vehicle
+  end
+
+  def available
+    @vehicle.available!
+    redirect_to @vehicle
   end
 
   private

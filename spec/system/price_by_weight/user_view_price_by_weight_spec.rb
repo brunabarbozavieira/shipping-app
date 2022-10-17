@@ -1,11 +1,22 @@
 require 'rails_helper'
 
 describe 'Usuário vê tabela de preço por peso' do 
+  it 'sem estar autenticado' do 
+    shipping_method = ShippingMethod.create!(name: 'Super Veloz', minimum_distance: 0, maximum_distance: 4, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
+    PriceByWeight.create!(minimum_weight: 0, maximum_weight: 10, price_per_kilometer: 0.5, shipping_method: shipping_method)
+
+    visit root_path
+    click_on 'Preços por Peso'
+    
+    expect(current_url).to eq new_user_session_url
+  end
   it 'a partir da tela inicial' do 
     shipping_method = ShippingMethod.create!(name: 'Super Veloz', minimum_distance: 0, maximum_distance: 4, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
     PriceByWeight.create!(minimum_weight: 0, maximum_weight: 10, price_per_kilometer: 0.5, shipping_method: shipping_method)
     PriceByWeight.create!(minimum_weight: 11, maximum_weight: 30, price_per_kilometer: 0.8, shipping_method: shipping_method)
+    regular = User.create!(email: 'regular@sistemadefrete.com.br', password: 'abcdefgh', name: 'Regular', user_type: 'regular')
   
+    login_as regular
     visit root_path
     click_on 'Preços por Peso'
     
@@ -22,11 +33,12 @@ describe 'Usuário vê tabela de preço por peso' do
     expect(page).to have_content 'Preço por km'
     expect(page).to have_content 'Modalidade de Frete'
     expect(page).to have_content 'Super Veloz'
-
-
   end
 
   it 'e não existem cadastros de preços por pesos' do 
+    regular = User.create!(email: 'regular@sistemadefrete.com.br', password: 'abcdefgh', name: 'Regular', user_type: 'regular')
+  
+    login_as regular
     visit root_path
     click_on 'Preços por Peso'
 

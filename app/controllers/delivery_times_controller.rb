@@ -1,5 +1,7 @@
 class DeliveryTimesController < ApplicationController
   before_action :set_delivery_time, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :index]
+  before_action :authenticate_user_is_admin?, only: [:new, :create, :edit, :update]
 
   def index
     @delivery_times = DeliveryTime.all

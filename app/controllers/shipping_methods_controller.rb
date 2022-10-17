@@ -1,6 +1,6 @@
 class ShippingMethodsController < ApplicationController
   before_action :set_shipping_method, only: [:edit, :update, :show, :disabled, :active]
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :disabled, :active]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :disabled, :active, :index, :show]
   before_action :authenticate_user_is_admin?, only: [:new, :create, :edit, :update, :disabled, :active]
   def index
     @shipping_methods = ShippingMethod.all

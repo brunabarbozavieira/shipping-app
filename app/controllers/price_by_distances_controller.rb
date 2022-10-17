@@ -1,6 +1,8 @@
 class PriceByDistancesController < ApplicationController
   before_action :set_price_by_distance, only: [:edit, :update]
-
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :index]
+  before_action :authenticate_user_is_admin?, only: [:new, :create, :edit, :update]
+  
   def index
     @price_by_distances = PriceByDistance.all
   end

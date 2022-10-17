@@ -12,5 +12,10 @@
     <dt> <%=Vehicle.human_attribute_name(:status)%>: </dt>
     <dd> <%= I18n.translate(@vehicle.status) %> kg </dd>
   </dl>
+  <% if @vehicle.available? %>
+    <%= button_to 'Veículo em Manutenção', maintenance_vehicle_url(@vehicle.id) %>
+  <% else @vehicle.maintenance? %>
+    <%= button_to 'Veículo Disponível', available_vehicle_url(@vehicle.id) %>
+  <% end %>
 
   <%= link_to 'Editar', edit_vehicle_url %>

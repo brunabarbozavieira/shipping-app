@@ -1,17 +1,6 @@
 require 'rails_helper'
 
 describe 'Usuário edita uma modalidade de frete' do 
-  it 'sem estar autenticado' do 
-    ShippingMethod.create!(name: 'Super Veloz', minimum_distance: 0, maximum_distance: 4, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
-
-    visit root_path
-    click_on 'Modalidades de Frete' 
-    click_on 'Super Veloz'
-    click_on 'Editar'
-    
-    expect(current_url).to eq new_user_session_url
-  end
-
   it 'se estiver autenticado como usuário administrador' do 
     admin = User.create!(email: 'admin@sistemadefrete.com.br', password: '12345678', name: 'Administrador', user_type: 'admin')
     shipping_method = ShippingMethod.create!(name: 'Super Veloz', minimum_distance: 0, maximum_distance: 4, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)

@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'home#index'
-  resources :vehicles, only: [:index, :new, :create, :show, :edit, :update]
+  resources :vehicles, only: [:index, :new, :create, :show, :edit, :update] do 
+    post 'maintenance', on: :member
+    post 'available', on: :member
+  end
   resources :shipping_methods, only: [:index, :new, :create, :show, :update, :edit] do 
     post 'active', on: :member
     post 'disabled', on: :member

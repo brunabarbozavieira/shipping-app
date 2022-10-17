@@ -1,11 +1,20 @@
 require 'rails_helper'
 
 describe 'Usuário vê tabela de preço por distâcia' do 
+  it 'sem estar autenticado' do 
+    visit root_path
+    click_on 'Preços por Peso'
+    
+    expect(current_url).to eq new_user_session_url
+  end
+
   it 'a partir da tela inicial' do 
     shipping_method = ShippingMethod.create!(name: 'Super Veloz', minimum_distance: 0, maximum_distance: 4, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
     PriceByDistance.create!(minimum_distance: 0, maximum_distance: 50, rate: 9, shipping_method: shipping_method)
     PriceByDistance.create!(minimum_distance: 51, maximum_distance: 150, rate: 12, shipping_method: shipping_method)
+    regular = User.create!(email: 'regular@sistemadefrete.com.br', password: 'abcdefgh', name: 'Regular', user_type: 'regular')
   
+    login_as regular
     visit root_path
     click_on 'Preços por Distância'
     
@@ -25,7 +34,10 @@ describe 'Usuário vê tabela de preço por distâcia' do
 
   end
 
-  it 'e não existem cadastros de preços por distância' do 
+  it 'e não existem cadastros de preços por distância' do
+    regular = User.create!(email: 'regular@sistemadefrete.com.br', password: 'abcdefgh', name: 'Regular', user_type: 'regular')
+  
+    login_as regular
     visit root_path
     click_on 'Preços por Distância'
 
