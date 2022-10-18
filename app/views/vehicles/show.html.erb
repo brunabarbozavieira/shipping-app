@@ -11,6 +11,8 @@
     <dd> <%= @vehicle.maximum_load_capacity %> kg </dd>
     <dt> <%=Vehicle.human_attribute_name(:status)%>: </dt>
     <dd> <%= I18n.translate(@vehicle.status) %> kg </dd>
+    <dt> <%=Vehicle.human_attribute_name(:shipping_method_id)%>: </dt>
+    <dd> <%= @vehicle.shipping_method.name %> </dd>
   </dl>
   <% if @vehicle.available? %>
     <%= button_to 'Veículo em Manutenção', maintenance_vehicle_url(@vehicle.id) %>

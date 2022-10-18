@@ -168,7 +168,6 @@ RSpec.describe ServiceOrder, type: :model do
                                            total_distance: 15)
 
       expect(service_order.total_price_service_order(shipping_method_a)).to eq 22.5
-
     end
   end
 end

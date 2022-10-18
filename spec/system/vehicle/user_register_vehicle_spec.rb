@@ -42,6 +42,8 @@ describe 'Usuário cadastra um veículo' do
 
   it 'com sucesso' do 
     admin = User.create!(email: 'admin@sistemadefrete.com.br', password: '12345678', name: 'Administrador', user_type: 'admin')
+    ShippingMethod.create!(name: 'Super Veloz', minimum_distance: 0, maximum_distance: 4, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
+    ShippingMethod.create!(name: 'itens Grandes', minimum_distance: 0, maximum_distance: 2, minimum_weight: 50, maximum_weight: 500, flat_rate: 32)
 
     login_as admin
     visit root_path
@@ -52,6 +54,7 @@ describe 'Usuário cadastra um veículo' do
     fill_in 'Modelo', with: 'Fiorino'
     select '2019', from: 'Ano de Fabricação'
     fill_in 'Capacidade Máxima de Carga', with: '650'
+    select 'Super Veloz', from: 'Modalidade de Frete'
     click_on 'Salvar'
 
     expect(page).to have_content 'Fiorino'
@@ -60,10 +63,12 @@ describe 'Usuário cadastra um veículo' do
     expect(page).to have_content 'Marca: Fiat'
     expect(page).to have_content 'Ano de Fabricação: 2019'
     expect(page).to have_content 'Capacidade Máxima de Carga: 650 kg'
+    expect(page).to have_content 'Modalidade de Frete: Super Veloz'
   end
 
   it 'com informacões incompletas' do 
     admin = User.create!(email: 'admin@sistemadefrete.com.br', password: '12345678', name: 'Administrador', user_type: 'admin')
+    ShippingMethod.create!(name: 'Super Veloz', minimum_distance: 0, maximum_distance: 4, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
 
     login_as admin
     visit root_path

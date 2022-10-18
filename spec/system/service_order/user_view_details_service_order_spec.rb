@@ -6,7 +6,9 @@ describe 'Usuário vê detalhes de uma ordem de serviço' do
                           weight: 0.2, recipient_name: 'Roberto Carlos Ferreira', identification_document: '56030366050', contact_phone: '11999990000', 
                           email: 'robertocf@email.com.br', full_delivery_address: 'Rua Leonardo da Vinci, 490 - São Paulo - SP',
                           total_distance: 15)
-  
+    regular = User.create!(email: 'regular@sistemadefrete.com.br', password: 'abcdefgh', name: 'Regular', user_type: 'regular')
+
+    login_as regular
     visit root_path
     click_on 'Ordens de Serviço'
     click_on service_order.service_order_code

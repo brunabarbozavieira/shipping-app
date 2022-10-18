@@ -15,4 +15,5 @@ pt-BR:
         year_of_manufacture: 'Ano de Fabricação'
         maximum_load_capacity: 'Capacidade Máxima de Carga'
         status: 'Status'
+        shipping_method_id: 'Modalidade de Frete'
       # will translate User attribute "login" as "Handle"

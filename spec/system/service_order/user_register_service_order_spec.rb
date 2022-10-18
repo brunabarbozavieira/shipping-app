@@ -1,14 +1,6 @@
 require 'rails_helper'
 
 describe 'Usuário cadastra uma ordem de serviço' do 
-  it 'sem estar autenticado' do 
-    visit root_path
-    click_on 'Ordens de Serviço'
-    click_on 'Cadastrar Nova Ordem de Serviço'
-
-    expect(current_url).to eq new_user_session_url
-  end
-  
   it 'se estiver autenticado como usuário administrador' do 
     admin = User.create!(email: 'admin@sistemadefrete.com.br', password: '12345678', name: 'Administrador', user_type: 'admin')
 

@@ -32,6 +32,10 @@
     <%= f.number_field :maximum_load_capacity %>
   </div>
   <div>
+    <%= f.label :shipping_method_id %>
+    <%= f.collection_select :shipping_method_id, @shipping_methods, :id, :name %>
+  </div>
+  <div>
     <%= f.submit 'Salvar' %>
   </div>
   <% end %>

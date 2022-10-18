@@ -12,6 +12,7 @@ class VehiclesController < ApplicationController
 
   def new
     @vehicle = Vehicle.new
+    @shipping_methods = ShippingMethod.all
   end
 
   def create
@@ -19,6 +20,7 @@ class VehiclesController < ApplicationController
     if @vehicle.save
       redirect_to @vehicle, notice: 'Veículo cadastrado com sucesso.'
     else
+      @shipping_methods = ShippingMethod.all
       flash[:notice] = 'Veículo não cadastrado.'
       render 'new'
     end
@@ -54,6 +56,6 @@ class VehiclesController < ApplicationController
   end
 
   def vehicle_params
-    params.require(:vehicle).permit(:license_plate, :brand, :model, :year_of_manufacture, :maximum_load_capacity)
+    params.require(:vehicle).permit(:license_plate, :brand, :model, :year_of_manufacture, :maximum_load_capacity, :shipping_method_id)
   end
 end

@@ -10,7 +10,9 @@ describe 'Usuário vê ordens de serviço pendente' do
                           weight: 32, recipient_name: 'Rosa de Souza Melo', identification_document: '10328832006', contact_phone: '11988880000', 
                           email: 'rosasm@email.com.br', full_delivery_address: 'Rua Frida Kahlo, 257 - Jundiaí - SP',
                           total_distance: 60, status: 'pending')
+    regular = User.create!(email: 'regular@sistemadefrete.com.br', password: 'abcdefgh', name: 'Regular', user_type: 'regular')
 
+    login_as regular
     visit root_path
     click_on 'Ordens de Serviço'
 
@@ -36,7 +38,9 @@ describe 'Usuário vê ordens de serviço pendente' do
                           weight: 8, recipient_name: 'Gabriela da Silva Lopes', identification_document: '71493786091', contact_phone: '19977770000', 
                           email: 'gabrielasl@email.com.br', full_delivery_address: 'Rua Candido Portinari, 257 - Campinas - SP',
                           total_distance: 60, status: 'closed')
+    regular = User.create!(email: 'regular@sistemadefrete.com.br', password: 'abcdefgh', name: 'Regular', user_type: 'regular')
 
+    login_as regular
     visit root_path
     click_on 'Ordens de Serviço'
 
@@ -47,6 +51,9 @@ describe 'Usuário vê ordens de serviço pendente' do
   end
 
   it 'e não existem oredens de serviço cadastradas' do 
+    regular = User.create!(email: 'regular@sistemadefrete.com.br', password: 'abcdefgh', name: 'Regular', user_type: 'regular')
+
+    login_as regular
     visit root_path
     click_on 'Ordens de Serviço'
 
