@@ -23,3 +23,4 @@ pt-BR:
         status: 'Status'
         deadline: 'Prazo'
         total_delivery_value: 'Valor Total da Entrega'
+        shipping_method_id: 'Modalidade de Frete'

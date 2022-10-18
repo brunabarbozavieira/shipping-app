@@ -28,7 +28,7 @@ class ServiceOrder < ApplicationRecord
 
   def price_by_weight_for_each_shipping_method_options(shipping_method)
       shipping_method.price_by_weight.each do |price_by_weight|
-        if self.weight > price_by_weight.minimum_weight && self.weight < price_by_weight.maximum_weight
+        if self.weight >= price_by_weight.minimum_weight && self.weight <= price_by_weight.maximum_weight
          return self.total_distance * price_by_weight.price_per_kilometer
         end
       end
@@ -36,7 +36,7 @@ class ServiceOrder < ApplicationRecord
 
   def price_by_distance_for_each_shipping_method_options(shipping_method)
       shipping_method.price_by_distance.each do |price_by_distance|
-        if self.total_distance > price_by_distance.minimum_distance && self.total_distance < price_by_distance.maximum_distance
+        if self.total_distance >= price_by_distance.minimum_distance && self.total_distance <= price_by_distance.maximum_distance
           return price_by_distance.rate
         end
       end
