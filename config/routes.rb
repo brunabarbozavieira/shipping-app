@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :vehicles, only: [:index, :new, :create, :show, :edit, :update] do 
     post 'maintenance', on: :member
     post 'available', on: :member
+    get 'search', on: :collection
   end
   resources :shipping_methods, only: [:index, :new, :create, :show, :update, :edit] do 
     post 'active', on: :member

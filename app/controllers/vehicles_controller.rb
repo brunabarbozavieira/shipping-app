@@ -49,6 +49,12 @@ class VehiclesController < ApplicationController
     redirect_to @vehicle
   end
 
+  def search
+    @license_plate = params["query"]
+    @vehicles = Vehicle.where("license_plate LIKE ?", "%#{@license_plate}%")
+    render 'index'
+  end
+
   private
 
   def set_vehicle
