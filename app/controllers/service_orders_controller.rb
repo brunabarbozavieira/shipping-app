@@ -1,8 +1,8 @@
 class ServiceOrdersController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :index, :show, :start_service_order]
+  before_action :authenticate_user!, only: [:new, :create, :index, :show, :start_service_order, :search]
   before_action :authenticate_user_is_admin?, only: [:new, :create]
   def index
-    @service_orders = ServiceOrder.pending
+    @service_orders = ServiceOrder.all
   end
 
   def new 
@@ -21,6 +21,11 @@ class ServiceOrdersController < ApplicationController
 
   def show
     @service_order = ServiceOrder.find(params[:id])
+  end
+
+  def search
+    @service_orders = ServiceOrder.where(status: params[:status])
+    render 'index'
   end
   
   def start_service_order

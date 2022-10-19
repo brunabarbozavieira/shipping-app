@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   resources :delivery_times, only: [:index, :new, :create, :update, :edit]
   resources :service_orders, only: [:index, :new, :create, :show] do
     patch 'start_service_order'
+    get 'search', on: :collection
   end
 end
