@@ -170,4 +170,16 @@ RSpec.describe ServiceOrder, type: :model do
       expect(service_order.total_price_service_order(shipping_method_a)).to eq 22.5
     end
   end
+
+  describe 'verifica se a entrega está em atraso' do 
+    it 'e se estiver, o campo motivo do atraso é obrigatório' do 
+      shipping_method = ShippingMethod.create!(name: 'Super Veloz', minimum_distance: 10, maximum_distance: 30, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
+      service_order = ServiceOrder.new(start_date: 5.days.ago, deadline: 48, delivery_date: DateTime.now, status: 'closed')
+
+      service_order.late_delivery
+
+      expect(service_order.errors.include? :reason_for_delay).to eq true
+    end
+  end
 end
+

@@ -32,6 +32,8 @@ class ServiceOrdersController < ApplicationController
     @service_order = ServiceOrder.find(params[:service_order_id])
     @shipping_method = ShippingMethod.find(params[:shipping_method_id])
     @vehicle = Vehicle.available.where(shipping_method: @shipping_method).first
+    @service_order.vehicle = @vehicle
+    @service_order.start_date = DateTime.now
     @service_order.deadline = @service_order.due_date(@shipping_method)
     @service_order.total_delivery_value = @service_order.total_price_service_order(@shipping_method)
     @service_order.shipping_method = @shipping_method
@@ -39,6 +41,21 @@ class ServiceOrdersController < ApplicationController
     @vehicle.operation!
     @service_order.save
     redirect_to @service_order, notice: 'Ordem de serviço iniciada com sucesso.'
+  end
+
+  def closed_service_order
+    @service_order = ServiceOrder.find(params[:service_order_id])
+    @service_order.reason_for_delay = params[:reason_for_delay]
+    @service_order.delivery_date = DateTime.now
+    @service_order.status = 'closed'
+    @vehicle = Vehicle.find(@service_order.vehicle_id)
+    @vehicle.available!
+    if @service_order.save
+      redirect_to @service_order, notice: 'Ordem de serviço encerrada com sucesso.'
+    else
+      flash[:notice] = 'Ordem de serviço não pode ser encerrada./'
+      redirect_to @service_order, flash: { alert: @service_order.errors.full_messages.join(', ') }
+    end
   end
   
 end

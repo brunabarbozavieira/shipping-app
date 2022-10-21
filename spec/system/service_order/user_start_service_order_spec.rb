@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Usuário inicia ordem de serviço selecionando uma modalidade de frete disponível' do 
-  it 'e adiciona o valor total e o prazo a ordem de serviço' do 
+  it 'e adiciona o valor total, o prazo e a modalidade de frete a ordem de serviço' do 
     shipping_method = ShippingMethod.create!(name: 'Super Veloz', minimum_distance: 10, maximum_distance: 30, minimum_weight: 0, maximum_weight: 20, flat_rate: 6)
     Vehicle.create!(license_plate:'MRO4H51', brand:'Fiat', model: 'Fiorino', year_of_manufacture: 2019, maximum_load_capacity: 650, shipping_method: shipping_method)
     PriceByDistance.create!(minimum_distance: 0, maximum_distance: 50, rate: 9, shipping_method: shipping_method)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_17_175109) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_20_170804) do
   create_table "delivery_times", force: :cascade do |t|
     t.integer "minimum_distance"
     t.integer "maximum_distance"
@@ -59,7 +59,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_17_175109) do
     t.decimal "total_delivery_value"
     t.integer "deadline"
     t.integer "shipping_method_id"
+    t.datetime "delivery_date"
+    t.string "reason_for_delay"
+    t.integer "vehicle_id"
+    t.datetime "start_date"
     t.index ["shipping_method_id"], name: "index_service_orders_on_shipping_method_id"
+    t.index ["vehicle_id"], name: "index_service_orders_on_vehicle_id"
   end
 
   create_table "shipping_methods", force: :cascade do |t|
@@ -105,5 +110,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_17_175109) do
   add_foreign_key "price_by_distances", "shipping_methods"
   add_foreign_key "price_by_weights", "shipping_methods"
   add_foreign_key "service_orders", "shipping_methods"
+  add_foreign_key "service_orders", "vehicles"
   add_foreign_key "vehicles", "shipping_methods"
 end

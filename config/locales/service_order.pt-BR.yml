@@ -24,3 +24,7 @@ pt-BR:
         deadline: 'Prazo'
         total_delivery_value: 'Valor Total da Entrega'
         shipping_method_id: 'Modalidade de Frete'
+        vehicle_id: 'Veículo'
+        start_date: 'Data de Início'
+        delivery_date: 'Data de Entrega'
+        reason_for_delay: 'Motivo do Atraso'

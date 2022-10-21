@@ -26,19 +26,37 @@
     <dd> <%= @service_order.total_distance %> km </dd>
     <dt> <%=ServiceOrder.human_attribute_name(:full_delivery_address)%>: </dt>
     <dd> <%= @service_order.full_delivery_address %> </dd>
-    <% if @service_order.status == 'started' %>
-      <dt> <%=ServiceOrder.human_attribute_name(:total_delivery_value)%>: </dt>
-      <dd> R$ <%= @service_order.total_delivery_value %> </dd>
-      <dt> <%=ServiceOrder.human_attribute_name(:deadline)%>: </dt>
-      <dd> <%= @service_order.deadline %> horas </dd>
-      <dt> <%=ServiceOrder.human_attribute_name(:shipping_method_id)%>: </dt>
-      <dd> <%= @service_order.shipping_method.name %> </dd>
-    <% end %>
+    <dt> <%=ServiceOrder.human_attribute_name(:total_delivery_value)%>: </dt>
+    <dd> R$ <%= @service_order.total_delivery_value %> </dd>
+    <dt> <%=ServiceOrder.human_attribute_name(:deadline)%>: </dt>
+    <dd> <%= @service_order.deadline %> horas </dd>
+    <dt> <%=ServiceOrder.human_attribute_name(:shipping_method_id)%>: </dt>
+    <dd> <%= @service_order.shipping_method&.name %> </dd>
+    <dt> <%=ServiceOrder.human_attribute_name(:vehicle_id)%>: </dt>
+    <dd> <%= @service_order.vehicle&.license_plate %> </dd>
+    <dt> <%=ServiceOrder.human_attribute_name(:start_date)%>: </dt>
+    <dd> <%= @service_order.start_date %> </dd>
+    <dt> <%=ServiceOrder.human_attribute_name(:delivery_date)%>: </dt>
+    <dd> <%= @service_order.delivery_date %> </dd>
+    <dt> <%=ServiceOrder.human_attribute_name(:reason_for_delay)%>: </dt>
+    <dd> <%= @service_order.reason_for_delay %> </dd>
   </dl>
 
+  <% if @service_order.started? %>
+  
+    <%= form_with url: service_order_closed_service_order_url(@service_order.id), method: :patch do |f| %>
+      <div>
+        <%= f.label :reason_for_delay, ServiceOrder.human_attribute_name(:reason_for_delay) %>
+        <%= f.text_area :reason_for_delay %>
+      </div>
+      <div>
+      <%= f.submit 'Encerrar Ordem de Serviço' %>
+      </div>
+    <% end %>
+  <% end %>
   <hr>
 
-  <% if @service_order.shipping_method_id.nil? %>
+  <% if @service_order.pending? %>
   <%= form_with model: @service_order, url: service_order_start_service_order_url(@service_order.id) do |f| %>
     <label for="shipping_method_id"> <strong> Escolha a Modalidade de Frete: </strong>
     <select id="shipping_method_id" name="shipping_method_id"> 

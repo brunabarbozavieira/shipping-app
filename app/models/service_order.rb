@@ -2,6 +2,9 @@ class ServiceOrder < ApplicationRecord
   validates :initial_full_address , :product_code , :dimensions , :weight , :recipient_name , :identification_document , :contact_phone , :email , :full_delivery_address, :total_distance, :service_order_code, :status, presence: true
   enum status: { pending: 0, started: 5, closed: 9 }
   belongs_to :shipping_method, optional: true
+  belongs_to :vehicle, optional: true
+
+  validate :late_delivery, on: :update
 
   before_validation :generate_service_order_code, on: :create
 
@@ -46,12 +49,17 @@ class ServiceOrder < ApplicationRecord
     shipping_method.flat_rate + price_by_weight_for_each_shipping_method_options(shipping_method) + price_by_distance_for_each_shipping_method_options(shipping_method)
   end
 
+  def late_delivery
+    if self.closed?
+      if self.start_date + self.deadline.hours < self.delivery_date && self.reason_for_delay.blank?
+        self.errors.add :reason_for_delay, 'não pode ficar em branco.'
+      end
+    end
+  end
+
   private
   
   def generate_service_order_code
     self.service_order_code = SecureRandom.alphanumeric(15).upcase
   end
-
-  
- 
 end
