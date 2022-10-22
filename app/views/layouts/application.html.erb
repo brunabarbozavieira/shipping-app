@@ -19,10 +19,10 @@
         <%= link_to 'Preços por Peso', price_by_weights_url %> |
         <%= link_to 'Preços por Distância', price_by_distances_url %> |
         <%= link_to 'Prazos de Entrega', delivery_times_url %> |
-        <%= link_to 'Ordens de Serviço', service_orders_url %>
+        <%= link_to 'Ordens de Serviço', service_orders_url %> |
         <% if user_signed_in? %>
         <%= I18n.translate(current_user.user_type) %> - <%= current_user.email%>
-        <%= button_to 'Sair', destroy_user_session_url, method: :delete %> |
+        <%= button_to 'Sair', destroy_user_session_url, method: :delete %> 
         <% else %>
         <%= link_to 'Entrar', new_user_session_url %>
         <% end %>

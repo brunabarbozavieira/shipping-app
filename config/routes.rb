@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :service_orders, only: [:index, :new, :create, :show] do
     patch 'start_service_order'
     patch 'closed_service_order'
+    get 'filter', on: :collection
     get 'search', on: :collection
   end
 end

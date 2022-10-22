@@ -1,5 +1,25 @@
-<h1> Resultados da Busca por: @service_order.service_order_code </h1>
+<h1> Resultado da Busca por: <%= @service_order_code %> </h1>
 
-<% @service_orders.each do |service_order| %>
-  <%= render service_order %>
+
+<h3> Situação da Entrega: <%= I18n.translate(@service_order.status) %> </h3>
+
+<dl>
+  <dt> <%=ServiceOrder.human_attribute_name(:vehicle_id)%>: </dt>
+  <dd> <%= @service_order.vehicle&.model %> </dd>
+  <dt> <%=ServiceOrder.human_attribute_name(:start_date)%>: </dt>
+  <dd> <%= @service_order.start_date %> </dd>
+  <dt> Data Prevista de Entrega: </dt>
+  <dd> <%= @service_order.start_date + @service_order.deadline.hours %> </dd>
+
+<% if @service_order.closed? %>
+  <dt> <%=ServiceOrder.human_attribute_name(:delivery_date)%>: </dt>
+  <dd> <%= @service_order.delivery_date %> </dd>
 <% end %>
+
+<% if @service_order.closed? && !@service_order.reason_for_delay.blank? %>
+  <dt> <%=ServiceOrder.human_attribute_name(:reason_for_delay)%>: </dt>
+  <dd> <%= @service_order.reason_for_delay %> </dd>
+<% end %>
+</dl>
+
+  

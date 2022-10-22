@@ -1,5 +1,5 @@
 class ServiceOrdersController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :index, :show, :start_service_order, :search]
+  before_action :authenticate_user!, only: [:new, :create, :index, :show, :start_service_order, :filter]
   before_action :authenticate_user_is_admin?, only: [:new, :create]
   def index
     @service_orders = ServiceOrder.all
@@ -23,9 +23,17 @@ class ServiceOrdersController < ApplicationController
     @service_order = ServiceOrder.find(params[:id])
   end
 
-  def search
+  def filter
     @service_orders = ServiceOrder.where(status: params[:status])
     render 'index'
+  end
+
+  def search
+    @service_order_code = params["query"]
+    @service_order = ServiceOrder.find_by(service_order_code: @service_order_code)
+    if @service_order.nil?
+      redirect_to root_path, alert: 'Código de rastreio inválido.'
+    end
   end
   
   def start_service_order

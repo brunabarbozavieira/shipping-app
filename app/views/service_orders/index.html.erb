@@ -2,7 +2,7 @@
 
 <%= link_to 'Cadastrar Nova Ordem de Serviço', new_service_order_url %>
 
-<%= form_with url: search_service_orders_url, method: :get do |f| %>
+<%= form_with url: filter_service_orders_url, method: :get do |f| %>
   <%= f.label :status, 'Buscar Ordem de Serviço' %>
    <%= f.select :status, ServiceOrder.statuses %>
    <%= f.submit 'Buscar' %>
