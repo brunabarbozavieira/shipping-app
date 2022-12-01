@@ -4,7 +4,7 @@
 
 <% if @shipping_methods.any? %>
   
-    <table>
+    <table class="table table-hover table-bordered">
       <thead>
         <tr>
           <th> <%=ShippingMethod.human_attribute_name(:name)%> </th>

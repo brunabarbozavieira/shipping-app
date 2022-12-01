@@ -10,7 +10,7 @@
 
 <% if @vehicles.any? %>
   
-    <table>
+    <table class="table table-hover table-bordered">
       <thead>
         <tr>
           <th> <%=Vehicle.human_attribute_name(:license_plate)%> </th>
@@ -28,7 +28,7 @@
         <% end %>
       </tbody>
     </table>
-  
+ 
   <% else %>
   <p>Não existem veículos cadastrados.</p>
 <% end %>

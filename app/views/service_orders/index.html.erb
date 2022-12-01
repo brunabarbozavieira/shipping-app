@@ -9,7 +9,7 @@
  <% end %>
 
 <% if @service_orders.any? %>
-  <table>
+  <table class="table table-hover table-bordered">
     <thead>
       <tr>
         <th> <%=ServiceOrder.human_attribute_name(:service_order_code)%> </th>
