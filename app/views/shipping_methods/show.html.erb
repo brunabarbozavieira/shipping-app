@@ -1,24 +1,24 @@
-<h1> Detalhes da Modalidade de Frete </h1>
+<header class="container">
+  <h1> Detalhes da Modalidade de Frete </h1>
+  <hr>
+  <div class="card text-bg-light mb-3" style="max-width: 40rem;">
+    <div class="card-body">
+      <h4 class="card-title"> <%= @shipping_method.name %> </h4>
+      <ul class="card-text">
+        <li class="list-group-item"> <strong> <%=ShippingMethod.human_attribute_name(:minimum_distance)%>:</strong> <%= @shipping_method.minimum_distance %> km </li>
+        <li class="list-group-item"> <strong> <%=ShippingMethod.human_attribute_name(:maximum_distance)%>:</strong> <%= @shipping_method.maximum_distance%> km</li>
+        <li class="list-group-item"> <strong> <%=ShippingMethod.human_attribute_name(:minimum_weight)%>:</strong> <%= @shipping_method.minimum_weight %> kg</li>
+        <li class="list-group-item"> <strong> <%=ShippingMethod.human_attribute_name(:maximum_weight)%>:</strong> <%= @shipping_method.maximum_weight %> kg</li>
+        <li class="list-group-item"> <strong> <%=ShippingMethod.human_attribute_name(:flat_rate)%>:</strong> <%= number_to_currency(@shipping_method.flat_rate) %> </li>
+        <li class="list-group-item"> <strong> <%=ShippingMethod.human_attribute_name(:status)%>:</strong> <%= I18n.translate(@shipping_method.status) %> </li>
+      </ul>
+      <% if @shipping_method.active? %>
+        <%= button_to 'Desativar', disabled_shipping_method_url(@shipping_method.id), class: "btn btn-primary  btn-m mb-3" %>
+      <% else %>
+        <%= button_to 'Ativar', active_shipping_method_url(@shipping_method.id), class: "btn btn-primary  btn-m mb-3" %>
+      <% end %>
 
-<h2> <%= @shipping_method.name %> </h2>
-  <dl>
-    <dt> <%=ShippingMethod.human_attribute_name(:minimum_distance)%>: </dt>
-    <dd> <%= @shipping_method.minimum_distance %> </dd>
-    <dt> <%=ShippingMethod.human_attribute_name(:maximum_distance)%>: </dt>
-    <dd> <%= @shipping_method.maximum_distance%> </dd>
-    <dt> <%=ShippingMethod.human_attribute_name(:minimum_weight)%>: </dt>
-    <dd> <%= @shipping_method.minimum_weight %> </dd>
-    <dt> <%=ShippingMethod.human_attribute_name(:maximum_weight)%>: </dt>
-    <dd> <%= @shipping_method.maximum_weight %> </dd>
-    <dt> <%=ShippingMethod.human_attribute_name(:flat_rate)%>: </dt>
-    <dd> <%= @shipping_method.flat_rate %> </dd>
-    <dt> <%=ShippingMethod.human_attribute_name(:status)%>: </dt>
-    <dd> <%= I18n.translate(@shipping_method.status) %> </dd>
-  </dl>
-  <% if @shipping_method.active? %>
-    <%= button_to 'Desativar', disabled_shipping_method_url(@shipping_method.id) %>
-   <% else %>
-    <%= button_to 'Ativar', active_shipping_method_url(@shipping_method.id) %>
-  <% end %>
-
-  <%= link_to 'Editar', edit_shipping_method_url %>
+      <%= link_to 'Editar', edit_shipping_method_url, class: "btn btn-primary  btn-m mb-3" %>
+    </div>
+  </div>
+</header>

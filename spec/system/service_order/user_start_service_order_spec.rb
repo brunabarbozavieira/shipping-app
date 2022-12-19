@@ -22,7 +22,7 @@ describe 'Usuário inicia ordem de serviço selecionando uma modalidade de frete
 
     expect(page).to have_content 'Ordem de serviço iniciada com sucesso.'
     expect(page).to have_content 'Status: Iniciada'
-    expect(page).to have_content 'Valor Total da Entrega: R$ 22.5'
+    expect(page).to have_content 'Valor Total da Entrega: R$ 22,50'
     expect(page).to have_content 'Prazo: 48 horas'
     expect(page).to have_content 'Modalidade de Frete: Super Veloz'
     expect(current_url).to eq service_order_url(service_order.id)

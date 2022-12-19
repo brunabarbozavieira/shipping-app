@@ -11,11 +11,11 @@ describe 'Usuário vê detalhes de uma modalidade de frete' do
     click_on 'Super Veloz'
 
     expect(page).to have_content 'Super Veloz'
-    expect(page).to have_content 'Distância Mínima: 0'
-    expect(page).to have_content 'Distância Máxima: 4'
-    expect(page).to have_content 'Peso Mínimo: 0'
-    expect(page).to have_content 'Peso Máximo: 20'
-    expect(page).to have_content 'Taxa Fixa: 6'
+    expect(page).to have_content 'Distância Mínima: 0 km'
+    expect(page).to have_content 'Distância Máxima: 4 km'
+    expect(page).to have_content 'Peso Mínimo: 0 kg'
+    expect(page).to have_content 'Peso Máximo: 20 kg'
+    expect(page).to have_content 'Taxa Fixa: R$ 6,00'
     expect(page).to have_content 'Status: Ativa'
   end
 end

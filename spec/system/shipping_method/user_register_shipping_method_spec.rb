@@ -57,11 +57,11 @@ describe 'Usuário cadastra modalidade de frete' do
     
     expect(page).to have_content 'Modalidade de frete cadastrada com sucesso.'
     expect(page).to have_content 'Super Veloz'
-    expect(page).to have_content 'Distância Mínima: 0'
-    expect(page).to have_content 'Distância Máxima: 15'
-    expect(page).to have_content 'Peso Mínimo: 0'
-    expect(page).to have_content 'Peso Máximo: 20'
-    expect(page).to have_content 'Taxa Fixa: 6'
+    expect(page).to have_content 'Distância Mínima: 0 km'
+    expect(page).to have_content 'Distância Máxima: 15 km'
+    expect(page).to have_content 'Peso Mínimo: 0 kg'
+    expect(page).to have_content 'Peso Máximo: 20 kg'
+    expect(page).to have_content 'Taxa Fixa: R$ 6,00'
   end
 
   it 'com informações incompletas' do 

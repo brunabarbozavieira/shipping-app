@@ -5,62 +5,65 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag "application" %>
   </head>
 
   <body>
     <header>
-    <nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Frete Rápido</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <%= link_to 'Página Inicial', root_path, class:"nav-link active" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Veículos', vehicles_url, class:"nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Modalidades de Frete', shipping_methods_url, class:"nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Preços por Peso', price_by_weights_url, class:"nav-link" %> 
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Preços por Distância', price_by_distances_url, class:"nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Prazos de Entrega', delivery_times_url, class:"nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Ordens de Serviço', service_orders_url, class:"nav-link" %>
-          </li>
-        </ul>
+      <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Frete Rápido</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <%= link_to 'Página Inicial', root_path, class:"nav-link active" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Veículos', vehicles_url, class:"nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Modalidades de Frete', shipping_methods_url, class:"nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Preços por Peso', price_by_weights_url, class:"nav-link" %> 
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Preços por Distância', price_by_distances_url, class:"nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Prazos de Entrega', delivery_times_url, class:"nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Ordens de Serviço', service_orders_url, class:"nav-link" %>
+            </li>
+          </ul>
         <div class="d-flex" role="search">
           <% if user_signed_in? %>
             <%= I18n.translate(current_user.user_type) %> - <%= current_user.email%>
-            <%= button_to 'Sair', destroy_user_session_url, method: :delete, class:"btn btn-outline-primary" %> 
+            <%= button_to 'Sair', destroy_user_session_url, method: :delete, class: "btn btn-primary"%> 
           <% else %>
-            <%= link_to 'Entrar', new_user_session_url , class:"btn btn-outline-primary" %>
+            <%= link_to 'Entrar', new_user_session_url , class: "btn btn-primary" %>
           <% end %>
         </div>
-      </div>
-    </div>
-  </nav>
-      <%= flash[:notice] %>
-      <%= flash[:alert] %>
+        </div>
+        </div>
+      </nav>
+      <% if notice %>
+            <p class="alert alert-success"> <%= notice %> </p>
+          <% end %>
+      <% if alert %>
+            <p class="alert alert-danger"> <%= alert %> </p>
+      <% end %>
     </header>
 
   <main>
-    <container class="container text-center"> 
+    <container class="container" > 
       <%= yield %>
     </container>
   <main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   </body>
 </html>

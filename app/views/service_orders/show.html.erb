@@ -1,72 +1,58 @@
-<h1> Detalhes da Ordem de Serviço </h1>
-
-<h2> <%=ServiceOrder.human_attribute_name(:service_order_code)%>: <%= @service_order.service_order_code %> </h2>
-<h3> <%=ServiceOrder.human_attribute_name(:status)%>: <%= I18n.translate(@service_order.status) %> </h3>
-
-  <dl>
-    <dt> <%=ServiceOrder.human_attribute_name(:initial_full_address)%>: </dt>
-    <dd> <%= @service_order.initial_full_address %> </dd>
-    <dt> <%=ServiceOrder.human_attribute_name(:product_code)%>: </dt>
-    <dd> <%= @service_order.product_code%> </dd>
-    <dt> <%=ServiceOrder.human_attribute_name(:dimensions)%>: </dt>
-    <dd> <%= @service_order.dimensions %> </dd>
-    <dt> <%=ServiceOrder.human_attribute_name(:weight)%>: </dt>
-    <dd> <%= @service_order.weight %> kg </dd>
-    <dt> <%=ServiceOrder.human_attribute_name(:recipient_name)%>: </dt>
-    <dd> <%= @service_order.recipient_name %> </dd>
-    <dt> <%=ServiceOrder.human_attribute_name(:identification_document)%>: </dt>
-    <dd> <%= @service_order.identification_document[0..2]%>.<%= @service_order.identification_document[3..5] %>.<%= @service_order.identification_document[6..8] %>-<%= @service_order.identification_document[9..10] %> </dd>
-    <dt> <%=ServiceOrder.human_attribute_name(:contact_phone)%>: </dt>
-    <dd> (<%= @service_order.contact_phone[0..1]%>)<%= @service_order.contact_phone[2..6] %>-<%= @service_order.contact_phone[7..10] %> </dd>
-    <dt> <%=ServiceOrder.human_attribute_name(:email)%>: </dt>
-    <dd> <%= @service_order.email %> </dd>
-    <dt> <%=ServiceOrder.human_attribute_name(:service_order_code)%>: </dt>
-    <dd> <%= @service_order.service_order_code %> </dd>
-    <dt> <%=ServiceOrder.human_attribute_name(:total_distance)%>: </dt>
-    <dd> <%= @service_order.total_distance %> km </dd>
-    <dt> <%=ServiceOrder.human_attribute_name(:full_delivery_address)%>: </dt>
-    <dd> <%= @service_order.full_delivery_address %> </dd>
-    <dt> <%=ServiceOrder.human_attribute_name(:total_delivery_value)%>: </dt>
-    <dd> R$ <%= @service_order.total_delivery_value %> </dd>
-    <dt> <%=ServiceOrder.human_attribute_name(:deadline)%>: </dt>
-    <dd> <%= @service_order.deadline %> horas </dd>
-    <dt> <%=ServiceOrder.human_attribute_name(:shipping_method_id)%>: </dt>
-    <dd> <%= @service_order.shipping_method&.name %> </dd>
-    <dt> <%=ServiceOrder.human_attribute_name(:vehicle_id)%>: </dt>
-    <dd> <%= @service_order.vehicle&.license_plate %> </dd>
-    <dt> <%=ServiceOrder.human_attribute_name(:start_date)%>: </dt>
-    <dd> <%= @service_order.start_date %> </dd>
-    <dt> <%=ServiceOrder.human_attribute_name(:delivery_date)%>: </dt>
-    <dd> <%= @service_order.delivery_date %> </dd>
-    <dt> <%=ServiceOrder.human_attribute_name(:reason_for_delay)%>: </dt>
-    <dd> <%= @service_order.reason_for_delay %> </dd>
-  </dl>
-
-  <% if @service_order.started? %>
-  
-    <%= form_with url: service_order_closed_service_order_url(@service_order.id), method: :patch do |f| %>
-      <div>
-        <%= f.label :reason_for_delay, ServiceOrder.human_attribute_name(:reason_for_delay) %>
-        <%= f.text_area :reason_for_delay %>
-      </div>
-      <div>
-      <%= f.submit 'Encerrar Ordem de Serviço' %>
-      </div>
-    <% end %>
-  <% end %>
+<header class="container">
+  <h1> Detalhes da Ordem de Serviço </h1>
   <hr>
+  <div class="card text-bg-light mb-3" style="max-width: 40rem;">
+    <div class="card-body">
+      <h4 class="card-title"> <%=ServiceOrder.human_attribute_name(:service_order_code)%>: <%= @service_order.service_order_code %> </h4>
+      <h4 class="card-title"> <%=ServiceOrder.human_attribute_name(:status)%>: <%= I18n.translate(@service_order.status) %> </h4>
+      <ul class="card-text">
+        <li class="list-group-item"> <strong>  <%=ServiceOrder.human_attribute_name(:initial_full_address)%>: </strong> <%= @service_order.initial_full_address %> </li>
+        <li class="list-group-item"> <strong>  <%=ServiceOrder.human_attribute_name(:product_code)%>: </strong>  <%= @service_order.product_code%> </li>
+        <li class="list-group-item"> <strong>  <%=ServiceOrder.human_attribute_name(:dimensions)%>: </strong>  <%= @service_order.dimensions %> </li>
+        <li class="list-group-item"> <strong>  <%=ServiceOrder.human_attribute_name(:weight)%>: </strong> <%= @service_order.weight %> kg </li>
+        <li class="list-group-item"> <strong>  <%=ServiceOrder.human_attribute_name(:recipient_name)%>: </strong> <%= @service_order.recipient_name %> </li>
+        <li class="list-group-item"> <strong>  <%=ServiceOrder.human_attribute_name(:identification_document)%>: </strong> <%= @service_order.identification_document[0..2]%>.<%= @service_order.identification_document[3..5] %>.<%= @service_order.identification_document[6..8] %>-<%= @service_order.identification_document[9..10] %> </li>
+        <li class="list-group-item"> <strong>  <%=ServiceOrder.human_attribute_name(:contact_phone)%>: </strong>  (<%= @service_order.contact_phone[0..1]%>)<%= @service_order.contact_phone[2..6] %>-<%= @service_order.contact_phone[7..10] %> </li>
+        <li class="list-group-item"> <strong>  <%=ServiceOrder.human_attribute_name(:email)%>: </strong> <%= @service_order.email %> </li>
+        <li class="list-group-item"> <strong>  <%=ServiceOrder.human_attribute_name(:service_order_code)%>: </strong> <%= @service_order.service_order_code %> </li>
+        <li class="list-group-item"> <strong>  <%=ServiceOrder.human_attribute_name(:total_distance)%>: </strong> <%= @service_order.total_distance %> km </li>
+        <li class="list-group-item"> <strong>  <%=ServiceOrder.human_attribute_name(:full_delivery_address)%>: </strong> <%= @service_order.full_delivery_address %> </li>
+        <li class="list-group-item"> <strong>  <%=ServiceOrder.human_attribute_name(:total_delivery_value)%>: </strong> <%= number_to_currency(@service_order.total_delivery_value) %></li>
+        <li class="list-group-item"> <strong>  <%=ServiceOrder.human_attribute_name(:deadline)%>: </strong> <%= @service_order.deadline %> horas </li>
+        <li class="list-group-item"> <strong>  <%=ServiceOrder.human_attribute_name(:shipping_method_id)%>: </strong> <%= @service_order.shipping_method&.name %></li>
+        <li class="list-group-item"> <strong>  <%=ServiceOrder.human_attribute_name(:vehicle_id)%>: </strong> <%= @service_order.vehicle&.license_plate %> </li>
+        <li class="list-group-item"> <strong>  <%=ServiceOrder.human_attribute_name(:start_date)%>: </strong>  <%= @service_order.start_date %> </li>
+        <li class="list-group-item"> <strong>  <%=ServiceOrder.human_attribute_name(:delivery_date)%>: </strong> <%= @service_order.delivery_date %> </li>
+        <li class="list-group-item"> <strong>  <%=ServiceOrder.human_attribute_name(:reason_for_delay)%>: </strong> <%= @service_order.reason_for_delay %> </li>
+      </ul>
+    </div>
+  </div>
+      <% if @service_order.started? %>
+      
+        <%= form_with url: service_order_closed_service_order_url(@service_order.id), method: :patch do |f| %>
+          <div>
+            <%= f.label :reason_for_delay, ServiceOrder.human_attribute_name(:reason_for_delay) %>
+            <%= f.text_area :reason_for_delay %>
+          </div>
+          <div>
+          <%= f.submit 'Encerrar Ordem de Serviço', class: "btn btn-primary  btn-m mb-3"%>
+          </div>
+        <% end %>
+      <% end %>
+      <hr>
 
-  <% if @service_order.pending? %>
-  <%= form_with model: @service_order, url: service_order_start_service_order_url(@service_order.id) do |f| %>
-    <label for="shipping_method_id"> <strong> Escolha a Modalidade de Frete: </strong>
-    <select id="shipping_method_id" name="shipping_method_id"> 
-    <% @service_order.options_shipping_method.each do |shipping_method|%>
-      <option value="<%= shipping_method.id %>"> <%= "Modalidade de Frete: #{shipping_method.name} - Valor Total da Entrega: #{@service_order.total_price_service_order(shipping_method)} - Prazo: #{@service_order.due_date(shipping_method)} horas" %> </option>
-     <% end %>
-    </select>
-    </label>
-      <%= f.submit 'Iniciar Ordem de Serviço' %>
-    <% end %>
-  <% end %>
+      <% if @service_order.pending? %>
+      <%= form_with model: @service_order, url: service_order_start_service_order_url(@service_order.id) do |f| %>
+        <label for="shipping_method_id"> <strong> Escolha a Modalidade de Frete: </strong>
+        <select id="shipping_method_id" name="shipping_method_id"> 
+        <% @service_order.options_shipping_method.each do |shipping_method|%>
+          <option value="<%= shipping_method.id %>"> <%= "Modalidade de Frete: #{shipping_method.name} - Valor Total da Entrega: #{@service_order.total_price_service_order(shipping_method)} - Prazo: #{@service_order.due_date(shipping_method)} horas" %> </option>
+        <% end %>
+        </select>
+        </label>
+          <%= f.submit 'Iniciar Ordem de Serviço', class: "btn btn-primary  btn-m mb-3" %>
+        <% end %>
+      <% end %>
+</header>
 
   

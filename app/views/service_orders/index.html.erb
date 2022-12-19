@@ -1,31 +1,40 @@
+<header class="container">
 <h1> Lista de Ordens de Serviço </h1>
-
-<%= link_to 'Cadastrar Nova Ordem de Serviço', new_service_order_url %>
+<hr>
+<%= link_to 'Cadastrar Nova Ordem de Serviço', new_service_order_url, class: "btn btn-primary  btn-m mb-3" %>
 
 <%= form_with url: filter_service_orders_url, method: :get do |f| %>
-  <%= f.label :status, 'Buscar Ordem de Serviço' %>
-   <%= f.select :status, ServiceOrder.statuses %>
-   <%= f.submit 'Buscar' %>
+  <div>
+    <label for="status">Buscar Ordem de Serviço</label>
+    <select name="status" id="status">
+      <option value="pending"><%= t('pending')%></option>
+      <option value="started"><%= t('started')%></option>
+      <option value="closed"><%= t('closed')%></option>
+    </select>
+    <%= f.submit 'Buscar' %>
+  </div>
  <% end %>
-
+ </header>
+<br>
 <% if @service_orders.any? %>
-  <table class="table table-hover table-bordered">
-    <thead>
-      <tr>
-        <th> <%=ServiceOrder.human_attribute_name(:service_order_code)%> </th>
-        <th> <%=ServiceOrder.human_attribute_name(:status)%> </th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @service_orders.each do |so|%>
-      <tr>
-        <td><%= link_to so.service_order_code, service_order_url(so.id) %></td>
-        <td><%= I18n.translate(so.status) %> </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-
+  <div class="container text-center">
+    <table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th> <%=ServiceOrder.human_attribute_name(:service_order_code)%> </th>
+          <th> <%=ServiceOrder.human_attribute_name(:status)%> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @service_orders.each do |so|%>
+        <tr>
+          <td><%= link_to so.service_order_code, service_order_url(so.id) %></td>
+          <td><%= I18n.translate(so.status) %> </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 <% else %>
   <p> Não existem ordens de serviço cadastradas. </p>
 <% end %>

@@ -30,7 +30,7 @@ describe 'Usuário busca ordem de serviço' do
     login_as regular
     visit root_path
     click_on 'Ordens de Serviço'
-    select 'pending', from: 'Buscar Ordem de Serviço'
+    select 'Pendente', from: 'Buscar Ordem de Serviço'
     click_on 'Buscar'
 
     expect(page).to have_content "#{first_service_order.service_order_code}"

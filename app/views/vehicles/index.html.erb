@@ -1,15 +1,18 @@
-<h1>Lista de Veículos</h1>
+<header class="container">
+  <h1>Lista de Veículos</h1>
+  <hr>
+  <%= link_to 'Cadastrar Veículo', new_vehicle_url, class: "btn btn-primary  btn-m mb-3" %>
 
-<%= link_to 'Cadastrar Veículo', new_vehicle_url %>
-
-<%= form_with url: search_vehicles_url, method: :get do |f| %>
-  <%= f.label :query, 'Buscar Veículos' %>
-   <%= f.text_field :query %>
-   <%= f.submit 'Buscar' %>
- <% end %>
-
-<% if @vehicles.any? %>
+  <%= form_with url: search_vehicles_url, method: :get do |f| %>
+    <%= f.label :query, 'Buscar Veículos' %>
+    <%= f.text_field :query %>
+    <%= f.submit 'Buscar' %>
+  <% end %>
   
+ </header>
+<br>
+<% if @vehicles.any? %>
+  <div class="container text-center">
     <table class="table table-hover table-bordered">
       <thead>
         <tr>
@@ -28,6 +31,7 @@
         <% end %>
       </tbody>
     </table>
+  </div>
  
   <% else %>
   <p>Não existem veículos cadastrados.</p>

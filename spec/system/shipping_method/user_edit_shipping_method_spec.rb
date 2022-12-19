@@ -66,11 +66,11 @@ describe 'Usuário edita uma modalidade de frete' do
 
     expect(page).to have_content 'Modalidade de frete atualizada com sucesso.'
     expect(page).to have_content 'Itens Grandes'
-    expect(page).to have_content 'Distância Mínima: 0'
-    expect(page).to have_content 'Distância Máxima: 2'
-    expect(page).to have_content 'Peso Mínimo: 50'
-    expect(page).to have_content 'Peso Máximo: 500'
-    expect(page).to have_content 'Taxa Fixa: 32'
+    expect(page).to have_content 'Distância Mínima: 0 km'
+    expect(page).to have_content 'Distância Máxima: 2 km'
+    expect(page).to have_content 'Peso Mínimo: 50 kg'
+    expect(page).to have_content 'Peso Máximo: 500 kg'
+    expect(page).to have_content 'Taxa Fixa: R$ 32,00'
     expect(page).not_to have_content 'Super veloz'
   end
 

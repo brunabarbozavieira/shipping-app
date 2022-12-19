@@ -1,9 +1,10 @@
-<h1> Tabela de Preço por Peso </h1>
-
-<%= link_to 'Cadastrar novo preço por peso', new_price_by_weight_url %>
-
+<header class="container">
+  <h1> Tabela de Preço por Peso </h1>
+  <hr>
+  <%= link_to 'Cadastrar novo preço por peso', new_price_by_weight_url, class: "btn btn-primary  btn-m mb-3" %>
+</header>
 <% if @price_by_weights.any? %>
-  
+  <div class="container text-center">
     <table class="table table-hover table-bordered">
       <thead>
         <tr>
@@ -26,7 +27,7 @@
         <% end %>
         </tbody>
     </table>
-  
+  </div>
   <% else %>
   <p>Não existem cadastros de preço por peso.</p>
 <% end %>
